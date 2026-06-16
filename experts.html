@@ -1,23 +1,149 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>BNI Josh 2026 — EXPERTS</title><style>*{box-sizing:border-box;margin:0;padding:0;}body{background:#0D0005;font-family:Arial,sans-serif;color:#fff;}.header{background:#1A0008;border-bottom:2px solid #C9A84C;padding:12px 14px;position:sticky;top:0;z-index:100;}.header h1{font-size:15px;font-weight:700;color:#C9A84C;}.header p{font-size:9px;color:rgba(201,168,76,0.6);margin-top:2px;}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding:10px 14px;background:#150005;}.stat{background:#1A0008;border:1px solid rgba(201,168,76,0.3);border-radius:8px;padding:8px;text-align:center;}.stat-num{font-size:20px;font-weight:700;color:#C9A84C;}.stat-lbl{font-size:8px;color:rgba(201,168,76,0.5);text-transform:uppercase;margin-top:1px;}.search-bar{padding:8px 14px;background:#150005;}.search-bar input{width:100%;padding:10px 12px;background:#1A0008;border:1px solid rgba(201,168,76,0.4);border-radius:8px;color:#fff;font-size:14px;outline:none;}.members-list{padding:6px 14px 100px;}.member-card{background:#1A0008;border:1px solid rgba(201,168,76,0.12);border-radius:10px;margin-bottom:8px;padding:12px;}.member-card.done{border-color:#4CAF50;background:rgba(76,175,80,0.05);}.top-row{display:flex;align-items:center;gap:8px;margin-bottom:10px;}.sr{font-size:10px;color:rgba(201,168,76,0.4);min-width:22px;}.mname{font-size:13px;font-weight:700;flex:1;}.member-card.done .mname{color:#A5D6A7;}.toggle-wrap{display:flex;align-items:center;gap:5px;}.tbtn{width:48px;height:26px;border-radius:13px;border:none;cursor:pointer;position:relative;}.tbtn.off{background:#2a2a2a;}.tbtn.on{background:#4CAF50;}.tdot{position:absolute;width:20px;height:20px;background:#fff;border-radius:50%;top:3px;left:3px;transition:transform .15s;}.tbtn.on .tdot{transform:translateX(22px);}.tlbl{font-size:10px;font-weight:700;min-width:38px;text-align:right;}.field-group{display:flex;flex-direction:column;gap:4px;margin-bottom:8px;}.field-label{font-size:9px;color:rgba(201,168,76,0.5);text-transform:uppercase;}.field-input{width:100%;padding:9px 11px;background:#0D0005;border:1px solid rgba(201,168,76,0.2);border-radius:6px;color:#fff;font-size:13px;outline:none;}.field-input:focus{border-color:#C9A84C;}.kids-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;}.kids-box{background:#0D0005;border:1px solid rgba(201,168,76,0.15);border-radius:6px;padding:8px;}.kids-lbl{font-size:9px;color:rgba(201,168,76,0.5);text-align:center;margin-bottom:6px;text-transform:uppercase;}.kids-lbl span{display:block;font-size:8px;color:rgba(201,168,76,0.3);margin-top:1px;}.kids-counter{display:flex;align-items:center;justify-content:space-between;}.kbtn{width:34px;height:34px;border-radius:50%;border:1px solid rgba(201,168,76,0.35);background:rgba(201,168,76,0.08);color:#C9A84C;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;}.kbtn:active{background:rgba(201,168,76,0.25);}.kcount{font-size:22px;font-weight:700;color:#C9A84C;min-width:28px;text-align:center;}.amt-strip{background:rgba(201,168,76,0.07);border:1px solid rgba(201,168,76,0.15);border-radius:6px;padding:7px 11px;display:flex;justify-content:space-between;align-items:center;}.amt-lbl{font-size:9px;color:rgba(201,168,76,0.5);}.amt-val{font-size:14px;font-weight:700;color:#C9A84C;}.footer-bar{position:fixed;bottom:0;left:0;right:0;background:#1A0008;border-top:1px solid rgba(201,168,76,0.3);padding:10px 14px;display:flex;gap:8px;}.save-btn{flex:1;padding:13px;background:#C9A84C;color:#0D0005;font-size:14px;font-weight:700;border:none;border-radius:8px;cursor:pointer;}.export-btn{padding:13px 12px;background:transparent;color:#C9A84C;font-size:11px;font-weight:600;border:1px solid rgba(201,168,76,0.5);border-radius:8px;cursor:pointer;}.toast{position:fixed;top:75px;left:50%;transform:translateX(-50%);background:#4CAF50;color:#fff;padding:9px 22px;border-radius:20px;font-size:13px;font-weight:700;display:none;z-index:999;}.no-results{text-align:center;padding:40px;color:rgba(201,168,76,0.4);font-size:13px;}</style></head><body>
-<div class="header"><h1>🏆 EXPERTS CHAPTER</h1><p>BNI Josh 2026 | Devraj Pal & Rahul Agrawal</p></div>
-<div class="stats"><div class="stat"><div class="stat-num" id="s-done">0</div><div class="stat-lbl">Done</div></div><div class="stat"><div class="stat-num" id="s-pend">42</div><div class="stat-lbl">Pending</div></div><div class="stat"><div class="stat-num" id="s-amt">₹0</div><div class="stat-lbl">Amount</div></div></div>
-<div class="search-bar"><input type="text" id="search" placeholder="🔍 Search member name..." oninput="filterMembers()" autocomplete="off"></div>
-<div class="members-list" id="members-list"></div>
-<div class="toast" id="toast">✅ Saved!</div>
-<div class="footer-bar"><button class="save-btn" onclick="saveData()">💾 SAVE</button><button class="export-btn" onclick="exportSummary()">📋 Export</button></div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>BNI Josh 2026 - EXPERTS</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0D0005;font-family:Arial,sans-serif;color:#fff}
+.hdr{background:#1A0008;border-bottom:2px solid #C9A84C;padding:10px 14px;position:sticky;top:0;z-index:100}
+.hdr h1{font-size:14px;font-weight:bold;color:#C9A84C}
+.hdr p{font-size:9px;color:rgba(201,168,76,.5);margin-top:2px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding:10px 14px;background:#150005}
+.stat{background:#1A0008;border:1px solid rgba(201,168,76,.3);border-radius:8px;padding:8px;text-align:center}
+.sn{font-size:20px;font-weight:bold;color:#C9A84C}
+.sl{font-size:8px;color:rgba(201,168,76,.4);text-transform:uppercase}
+.sb{padding:8px 14px;background:#150005}
+.sb input{width:100%;padding:10px 12px;background:#1A0008;border:1px solid rgba(201,168,76,.4);border-radius:8px;color:#fff;font-size:14px;outline:none}
+.ml{padding:6px 14px 100px}
+.mc{background:#1A0008;border:1px solid rgba(201,168,76,.12);border-radius:10px;margin-bottom:8px;padding:12px}
+.mc.done{border-color:#4CAF50;background:rgba(76,175,80,.05)}
+.tr{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.sr{font-size:10px;color:rgba(201,168,76,.4);min-width:22px}
+.mn{font-size:13px;font-weight:bold;flex:1}
+.mc.done .mn{color:#A5D6A7}
+.tw{display:flex;align-items:center;gap:5px}
+.tbtn{width:48px;height:26px;border-radius:13px;border:none;cursor:pointer;position:relative}
+.tbtn.off{background:#333}.tbtn.on{background:#4CAF50}
+.tdot{position:absolute;width:20px;height:20px;background:#fff;border-radius:50%;top:3px;left:3px;transition:transform .2s}
+.tbtn.on .tdot{transform:translateX(22px)}
+.tlbl{font-size:10px;font-weight:bold;min-width:44px;text-align:right}
+.fg{display:flex;flex-direction:column;gap:4px;margin-bottom:8px}
+.fl{font-size:9px;color:rgba(201,168,76,.5);text-transform:uppercase}
+.fi{width:100%;padding:10px 11px;background:#0D0005;border:1px solid rgba(201,168,76,.2);border-radius:6px;color:#fff;font-size:14px;outline:none}
+.fi:focus{border-color:#C9A84C}
+.kg{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px}
+.kb{background:#0D0005;border:1px solid rgba(201,168,76,.15);border-radius:6px;padding:8px}
+.kl{font-size:9px;color:rgba(201,168,76,.5);text-align:center;margin-bottom:6px;text-transform:uppercase}
+.kl span{display:block;font-size:8px;color:rgba(201,168,76,.3);margin-top:1px}
+.kc{display:flex;align-items:center;justify-content:space-between}
+.kbtn{width:36px;height:36px;border-radius:50%;border:1px solid rgba(201,168,76,.4);background:rgba(201,168,76,.1);color:#C9A84C;font-size:22px;cursor:pointer;line-height:1}
+.knum{font-size:22px;font-weight:bold;color:#C9A84C;min-width:28px;text-align:center}
+.as{background:rgba(201,168,76,.07);border:1px solid rgba(201,168,76,.15);border-radius:6px;padding:8px 12px;display:flex;justify-content:space-between;align-items:center}
+.al{font-size:9px;color:rgba(201,168,76,.5)}
+.av{font-size:15px;font-weight:bold;color:#C9A84C}
+.fb{position:fixed;bottom:0;left:0;right:0;background:#1A0008;border-top:1px solid rgba(201,168,76,.3);padding:10px 14px;display:flex;gap:8px}
+.sv{flex:1;padding:14px;background:#C9A84C;color:#0D0005;font-size:15px;font-weight:bold;border:none;border-radius:8px;cursor:pointer}
+.exbtn{padding:14px 12px;background:transparent;color:#C9A84C;font-size:11px;font-weight:bold;border:1px solid rgba(201,168,76,.5);border-radius:8px;cursor:pointer}
+.tst{position:fixed;top:80px;left:50%;transform:translateX(-50%);background:#4CAF50;color:#fff;padding:10px 24px;border-radius:20px;font-size:14px;font-weight:bold;display:none;z-index:999}
+.syncing{background:#C9A84C;color:#0D0005}
+.nr{text-align:center;padding:40px;color:rgba(201,168,76,.4);font-size:13px}
+</style>
+</head>
+<body>
+<div class="hdr">
+  <h1>EXPERTS CHAPTER</h1>
+  <p>BNI Josh 2026 | Devraj Pal & Rahul Agrawal</p>
+</div>
+<div class="stats">
+  <div class="stat"><div class="sn" id="sd">0</div><div class="sl">Done</div></div>
+  <div class="stat"><div class="sn" id="sp">42</div><div class="sl">Pending</div></div>
+  <div class="stat"><div class="sn" id="sa">0</div><div class="sl">Amount</div></div>
+</div>
+<div class="sb"><input type="text" id="sch" placeholder="Search member name..." oninput="flt()" autocomplete="off"></div>
+<div class="ml" id="ml"></div>
+<div class="tst" id="tst">Saved!</div>
+<div class="fb">
+  <button class="sv" id="savebtn" onclick="sav()">SAVE & SYNC</button>
+  <button class="exbtn" onclick="exp()">Export</button>
+</div>
 <script>
-const CHAPTER='EXPERTS',RATE=1800;
-const MEMBERS=["AJAY PRAKASH SHUKLA", "Alok Maheshwari", "Aman Goyal", "Amit Agrawal", "Anant Srivastav", "Arun DAGA", "Ayush Parakh", "BALMUKUND CHOUBEY", "BHASKAR DUTTA MANSANA", "Birendra Singh", "Deepak Gupta", "Deepak Gupta (Lubricants)", "DEEPESH LALWANI", "DEVRAJ PAL", "Gaurav Sahu", "Kailash Naidu", "Manav Jindal", "MANISH. SHARMA", "Manoj Kumar Sahu", "MITHLESH BHUMARKAR", "Nagendra Choudhary", "Nikhil Badhai", "Parth Chauhan", "Prateek Agrawal", "Pratik Agrawal", "Preeti Sahu", "Rahul Agrawal (dry fruits)", "Rahul Thethwar", "Ritesh Nagwani", "Rohit Singh Thakur", "RRahul R Modi", "Shrikant Parakh", "Shubhraj Singh", "Shweta Tiwari", "Shyam lal Sahu", "Sushant Jogdand", "Tapan Agrawal", "Tarun Gohil", "Tribhuvan Sonkar", "VIJAY KUMAR SAHU", "Vijay Malani", "Vivek Yadav"];
-let data={};
-function loadData(){const s=localStorage.getItem('bnijosh_v2_'+CHAPTER);if(s)data=JSON.parse(s);else MEMBERS.forEach((_,i)=>{data[i]={done:false,family:'',kids0:0,kids5:0};});}
-function saveData(){localStorage.setItem('bnijosh_v2_'+CHAPTER,JSON.stringify(data));const t=document.getElementById('toast');t.style.display='block';setTimeout(()=>t.style.display='none',2000);updateStats();}
-function calcAmt(i){const d=data[i];if(!d||!d.done)return 0;return(1+(d.family&&d.family.trim()?1:0)+(parseInt(d.kids5)||0))*RATE;}
-function updateStats(){let done=0,amt=0;MEMBERS.forEach((_,i)=>{if(data[i]&&data[i].done){done++;amt+=calcAmt(i);}});document.getElementById('s-done').textContent=done;document.getElementById('s-pend').textContent=MEMBERS.length-done;document.getElementById('s-amt').textContent=amt>=100000?'₹'+(amt/100000).toFixed(1)+'L':'₹'+amt.toLocaleString('en-IN');}
-function toggleDone(i){data[i].done=!data[i].done;const btn=document.getElementById('tb'+i);const lbl=document.getElementById('tl'+i);const card=document.getElementById('c'+i);const nm=document.getElementById('nm'+i);if(data[i].done){btn.className='tbtn on';btn.querySelector('.tdot').style.transform='translateX(22px)';lbl.textContent='Done';lbl.style.color='#4CAF50';card.classList.add('done');nm.style.color='#A5D6A7';}else{btn.className='tbtn off';btn.querySelector('.tdot').style.transform='none';lbl.textContent='Pending';lbl.style.color='#888';card.classList.remove('done');nm.style.color='#fff';}updateAmt(i);saveData();}
-function changeKids(i,type,delta){const k=type==='0'?'kids0':'kids5';data[i][k]=Math.max(0,Math.min(4,(parseInt(data[i][k])||0)+delta));document.getElementById('kc'+type+'_'+i).textContent=data[i][k];updateAmt(i);}
-function updateAmt(i){const el=document.getElementById('av'+i);if(el)el.textContent='₹'+calcAmt(i).toLocaleString('en-IN');updateStats();}
-function renderAll(indices){const list=document.getElementById('members-list');const show=indices||MEMBERS.map((_,i)=>i);if(!show.length){list.innerHTML='<div class="no-results">No members found</div>';return;}list.innerHTML=show.map(i=>{const d=data[i];const amt=calcAmt(i);return`<div class="member-card ${d.done?'done':''}" id="c${i}"><div class="top-row"><span class="sr">${i+1}.</span><span class="mname" id="nm${i}" style="color:${d.done?'#A5D6A7':'#fff'}">${MEMBERS[i]}</span><div class="toggle-wrap"><button class="tbtn ${d.done?'on':'off'}" id="tb${i}" onclick="toggleDone(${i})"><div class="tdot" style="transform:${d.done?'translateX(22px)':'none'}"></div></button><span class="tlbl" id="tl${i}" style="color:${d.done?'#4CAF50':'#888'}">${d.done?'Done':'Pending'}</span></div></div><div class="field-group"><span class="field-label">Family Member Name</span><input class="field-input" type="text" placeholder="Type spouse name" value="${d.family||''}" autocomplete="off" oninput="data[${i}].family=this.value;updateAmt(${i})"></div><div class="kids-grid"><div class="kids-box"><div class="kids-lbl">Kids Age 0-5<span>FREE</span></div><div class="kids-counter"><button class="kbtn" onclick="changeKids(${i},'0',-1)">−</button><span class="kcount" id="kc0_${i}">0</span><button class="kbtn" onclick="changeKids(${i},'0',1)">+</button></div></div><div class="kids-box"><div class="kids-lbl">Kids Age 5+<span>₹1,800 each</span></div><div class="kids-counter"><button class="kbtn" onclick="changeKids(${i},'5',-1)">−</button><span class="kcount" id="kc5_${i}">0</span><button class="kbtn" onclick="changeKids(${i},'5',1)">+</button></div></div></div><div class="amt-strip"><span class="amt-lbl">Amount</span><span class="amt-val" id="av${i}">₹0</span></div></div>`;}). join('');}
-function filterMembers(){const q=document.getElementById('search').value.toLowerCase().trim();if(!q){renderAll();return;}renderAll(MEMBERS.map((_,i)=>i).filter(i=>MEMBERS[i].toLowerCase().includes(q)));}
-function exportSummary(){let txt=`BNI JOSH 2026 - EXPERTS\nCoordinators: Devraj Pal & Rahul Agrawal\n${new Date().toLocaleString('en-IN')}\n\n`;let done=[],pend=[],tot=0;MEMBERS.forEach((m,i)=>{const d=data[i];if(d&&d.done){const a=calcAmt(i);tot+=a;done.push(`✅ ${m}${d.family?' + '+d.family:''}${d.kids0>0?' + '+d.kids0+' kids(free)':''}${d.kids5>0?' + '+d.kids5+' kids':''} = Rs.${a.toLocaleString('en-IN')}`);}else pend.push(`⏳ ${m}`);}); txt+=`DONE (${done.length}):\n${done.join('\n')}\n\nPENDING (${pend.length}):\n${pend.join('\n')}\n\nTOTAL: Rs.${tot.toLocaleString('en-IN')}`;const b=new Blob([txt],{type:'text/plain'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='EXPERTS_Summary.txt';a.click();}
-loadData();renderAll();updateStats();
-</script></body></html>
+var CH="EXPERTS",RT=1800,MEM=["AJAY PRAKASH  SHUKLA", "Alok Maheshwari", "Aman Goyal", "Amit Agrawal", "Anant Srivastav", "Arun DAGA", "Ayush Parakh", "BALMUKUND   CHOUBEY", "BHASKAR DUTTA MANSANA", "Birendra Singh", "Deepak Gupta", "Deepak Gupta (Lubricants)", "DEEPESH LALWANI", "DEVRAJ PAL", "Gaurav Sahu", "Kailash Naidu", "Manav Jindal", "MANISH. SHARMA", "Manoj Kumar Sahu", "MITHLESH BHUMARKAR", "Nagendra Choudhary", "Nikhil Badhai", "Parth Chauhan", "Prateek Agrawal", "Pratik Agrawal", "Preeti Sahu", "Rahul Agrawal (dry fruits)", "Rahul Thethwar", "Ritesh Nagwani", "Rohit Singh Thakur", "RRahul R Modi", "Shrikant Parakh", "Shubhraj Singh", "Shweta Tiwari", "Shyam lal Sahu", "Sushant Jogdand", "Tapan Agrawal", "Tarun Gohil", "Tribhuvan Sonkar", "VIJAY KUMAR SAHU", "Vijay Malani", "Vivek Yadav"],D={};
+var BACKEND="https://script.google.com/macros/s/AKfycbydiIc1WjcgMN0g3f2GS6Z7jQdKDonzOnvclV4OEgVbS7hJuUelFj-RZjzjSc0ikm4/exec";
+
+function ld(){var s=localStorage.getItem("bj4_"+CH);if(s){D=JSON.parse(s);}else{for(var i=0;i<MEM.length;i++){D[i]={d:false,f:"",k0:0,k5:0};}}}
+
+function sav(){
+  localStorage.setItem("bj4_"+CH,JSON.stringify(D));
+  var btn=document.getElementById("savebtn");
+  btn.textContent="Syncing...";
+  btn.className="sv syncing";
+  
+  var members=[];
+  for(var i=0;i<MEM.length;i++){
+    var x=D[i];
+    members.push({name:MEM[i],done:x.d,family:x.f||"",kids0:x.k0||0,kids5:x.k5||0,amount:ca(i)});
+  }
+  
+  var payload={chapter:CH,members:members};
+  
+  var xhr=new XMLHttpRequest();
+  xhr.open("POST",BACKEND,true);
+  xhr.setRequestHeader("Content-Type","text/plain");
+  xhr.onreadystatechange=function(){
+    if(xhr.readyState===4){
+      btn.textContent="SAVE & SYNC";
+      btn.className="sv";
+      var t=document.getElementById("tst");
+      t.textContent="Saved & Synced to Dashboard!";
+      t.style.display="block";
+      setTimeout(function(){t.style.display="none";},3000);
+    }
+  };
+  xhr.onerror=function(){
+    btn.textContent="SAVE & SYNC";
+    btn.className="sv";
+    var t=document.getElementById("tst");
+    t.textContent="Saved locally!";
+    t.style.display="block";
+    setTimeout(function(){t.style.display="none";},2000);
+  };
+  xhr.send(JSON.stringify(payload));
+  st();
+}
+
+function ca(i){var x=D[i];if(!x||!x.d)return 0;return(1+(x.f&&x.f.trim()?1:0)+(parseInt(x.k5)||0))*RT;}
+function st(){var dn=0,am=0;for(var i=0;i<MEM.length;i++){if(D[i]&&D[i].d){dn++;am+=ca(i);}}document.getElementById("sd").textContent=dn;document.getElementById("sp").textContent=MEM.length-dn;document.getElementById("sa").textContent="Rs."+am.toLocaleString("en-IN");}
+function tg(i){D[i].d=!D[i].d;var b=document.getElementById("tb"+i),l=document.getElementById("tl"+i),c=document.getElementById("mc"+i),n=document.getElementById("mn"+i);if(D[i].d){b.className="tbtn on";b.querySelector(".tdot").style.transform="translateX(22px)";l.textContent="Done";l.style.color="#4CAF50";c.className="mc done";n.style.color="#A5D6A7";}else{b.className="tbtn off";b.querySelector(".tdot").style.transform="none";l.textContent="Pending";l.style.color="#888";c.className="mc";n.style.color="#fff";}ua(i);}
+function ck(i,t,dl){var k=t==="0"?"k0":"k5";D[i][k]=Math.max(0,Math.min(4,(parseInt(D[i][k])||0)+dl));document.getElementById("kn"+t+"_"+i).textContent=D[i][k];ua(i);}
+function ua(i){var e=document.getElementById("av"+i);if(e)e.textContent="Rs."+ca(i).toLocaleString("en-IN");st();}
+function rnd(ix){
+  var l=document.getElementById("ml"),sh=ix||[],i,x,a,o="";
+  if(!ix){for(i=0;i<MEM.length;i++)sh.push(i);}
+  if(!sh.length){l.innerHTML="<div class='nr'>No results</div>";return;}
+  for(var ii=0;ii<sh.length;ii++){
+    i=sh[ii];x=D[i];a=ca(i);
+    o+="<div class='mc "+(x.d?"done":"")+" ' id='mc"+i+"'>";
+    o+="<div class='tr'><span class='sr'>"+(i+1)+".</span>";
+    o+="<span class='mn' id='mn"+i+"' style='color:"+(x.d?"#A5D6A7":"#fff")+"'>"+MEM[i]+"</span>";
+    o+="<div class='tw'><button class='tbtn "+(x.d?"on":"off")+"' id='tb"+i+"' onclick='tg("+i+")'><div class='tdot' style='transform:"+(x.d?"translateX(22px)":"none")+"' ></div></button>";
+    o+="<span class='tlbl' id='tl"+i+"' style='color:"+(x.d?"#4CAF50":"#888")+"'>"+(x.d?"Done":"Pending")+"</span></div></div>";
+    o+="<div class='fg'><span class='fl'>Family Member Name</span><input class='fi' type='text' placeholder='Type spouse name' value='"+(x.f||"")+" ' autocomplete='off' oninput='D["+i+"].f=this.value;ua("+i+")' ></div>";
+    o+="<div class='kg'><div class='kb'><div class='kl'>Kids 0-5<span>FREE</span></div><div class='kc'><button class='kbtn' onclick='ck("+i+","0",-1)'>-</button><span class='knum' id='kn0_"+i+"'>"+(x.k0||0)+"</span><button class='kbtn' onclick='ck("+i+","0",1)'>+</button></div></div>";
+    o+="<div class='kb'><div class='kl'>Kids 5+<span>Rs.1800 each</span></div><div class='kc'><button class='kbtn' onclick='ck("+i+","5",-1)'>-</button><span class='knum' id='kn5_"+i+"'>"+(x.k5||0)+"</span><button class='kbtn' onclick='ck("+i+","5",1)'>+</button></div></div></div>";
+    o+="<div class='as'><span class='al'>Amount</span><span class='av' id='av"+i+"'>Rs."+a.toLocaleString("en-IN")+"</span></div></div>";
+  }
+  l.innerHTML=o;
+}
+function flt(){var q=document.getElementById("sch").value.toLowerCase().trim(),r=[],i;if(!q){rnd();return;}for(i=0;i<MEM.length;i++){if(MEM[i].toLowerCase().indexOf(q)>=0)r.push(i);}rnd(r);}
+function exp(){
+  var t="BNI JOSH 2026 - EXPERTS\nCoordinators: Devraj Pal & Rahul Agrawal\n"+new Date().toLocaleString("en-IN")+"\n\n",dn=[],pn=[],tot=0,i,x,a;
+  for(i=0;i<MEM.length;i++){x=D[i];if(x&&x.d){a=ca(i);tot+=a;dn.push("Done: "+MEM[i]+(x.f?" + "+x.f:"")+" Rs."+a.toLocaleString("en-IN"));}else{pn.push("Pending: "+MEM[i]);}}
+  t+="DONE ("+dn.length+"):\n"+dn.join("\n")+"\n\nPENDING ("+pn.length+"):\n"+pn.join("\n")+"\n\nTOTAL: Rs."+tot.toLocaleString("en-IN");
+  var b=new Blob([t],{type:"text/plain"}),a2=document.createElement("a");a2.href=URL.createObjectURL(b);a2.download="EXPERTS_Summary.txt";a2.click();
+}
+ld();rnd();st();
+</script>
+</body>
+</html>
