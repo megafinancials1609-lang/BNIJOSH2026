@@ -64,13 +64,13 @@ body{background:#0D0005;font-family:Arial,sans-serif;color:#fff;padding:14px}
   <p>BNI RAIPUR & REST OF CHHATTISGARH</p>
   <h1>JOSH</h1>
   <p>MEMBERS DAY 2026 — LIVE DASHBOARD</p>
-  <div class="dt">19 July 2026 &bull; Hotel Babylon International, Raipur</div>
+  <div class="dt">19 July 2026 • Hotel Babylon International, Raipur</div>
   <p style="font-size:10px;color:rgba(201,168,76,.5);margin-top:6px">Program Chair: Manish Agrawal (P) | Anjali Minocha</p>
 </div>
 
 <div class="timers">
   <div class="tcard">
-    <div class="tlbl">Early Bird Ends — 26 June 2026</div>
+    <div class="tlbl">Early Bird Ended — 26 June 2026</div>
     <div class="tdig">
       <div class="tb"><span class="tn" id="eb-d">00</span><span class="tl">Days</span></div>
       <div class="tb"><span class="tn" id="eb-h">00</span><span class="tl">Hrs</span></div>
@@ -92,8 +92,8 @@ body{background:#0D0005;font-family:Arial,sans-serif;color:#fff;padding:14px}
 <div class="metrics">
   <div class="metric"><div class="mlbl">Registered</div><div class="mval" id="m-total">-</div><div class="msub">Target 1500</div></div>
   <div class="metric"><div class="mlbl">Remaining</div><div class="mval" id="m-rem">-</div><div class="msub">to target</div></div>
-  <div class="metric"><div class="mlbl">Collection</div><div class="mval" id="m-amt">-</div><div class="msub">early bird</div></div>
-  <div class="metric"><div class="mlbl">Chapters</div><div class="mval" id="m-chaps">-</div><div class="msub">active / 20</div></div>
+  <div class="metric"><div class="mlbl">Collection</div><div class="mval" id="m-amt">-</div><div class="msub">Rs.</div></div>
+  <div class="metric"><div class="mlbl">Total Members</div><div class="mval">1298</div><div class="msub">all chapters</div></div>
 </div>
 
 <div class="pw">
@@ -113,18 +113,27 @@ body{background:#0D0005;font-family:Arial,sans-serif;color:#fff;padding:14px}
 
 <div class="foot">
   <span id="last-upd">Updating...</span>
-  <button class="rbtn" onclick="loadData()">Refresh</button>
+  <button class="rbtn" onclick="loadData()">↻ Refresh</button>
 </div>
 
 <script>
 var BACKEND = "https://script.google.com/macros/s/AKfycbydiIc1WjcgMN0g3f2GS6Z7jQdKDonzOnvclV4OEgVbS7hJuUelFj-RZjzjSc0ikm4/exec";
 var TARGET = 1500;
-var EBE = new Date("2026-06-26T23:59:59");
 var EVD = new Date("2026-07-19T00:00:00");
+var EBE = new Date("2026-06-26T23:59:59");
+
+// UPDATED CHAPTER TOTALS — 26 June 2026
+var TOTALS = {
+  AMIGOS:82, BARONS:91, CHAMPIONS:129, DIAMOND:73,
+  EXPERTS:40, FUTURZ:69, GLADIATORS:98, HALLMARK:70,
+  ICONS:58, TYCOONS:48, JUPITER:68, KARMA:38,
+  LEGENDS:40, MANTRA:34, PHOENIX:59, VICTORY:36,
+  ALPHA:102, BILLIONAIRES:81, CRYSTALS:45, DYNAMIC:36
+};
 
 function pad(n){return String(n).padStart(2,"0");}
 function tick(){
-  var now = new Date();
+  var now=new Date();
   function setT(ms,d,h,m,s){
     if(ms<=0){[d,h,m,s].forEach(function(id){document.getElementById(id).textContent="00";});return;}
     document.getElementById(d).textContent=pad(Math.floor(ms/86400000));
@@ -139,73 +148,72 @@ function tick(){
 function fmtL(n){return n>=100000?"Rs."+(n/100000).toFixed(1)+"L":"Rs."+n.toLocaleString("en-IN");}
 
 function render(data){
-  var chapters = data.chapters;
-  var totalDone = data.totalDone || 0;
-  var totalAmt = data.totalAmount || 0;
-  var chActive = 0;
-  for(var i=0;i<chapters.length;i++){if(chapters[i].done>0)chActive++;}
+  var chapters=data.chapters;
+  var totalDone=data.totalDone||0;
+  var totalAmt=data.totalAmount||0;
+  var chActive=0;
 
-  document.getElementById("m-total").textContent = totalDone.toLocaleString("en-IN");
-  document.getElementById("m-rem").textContent = Math.max(0,TARGET-totalDone).toLocaleString("en-IN");
-  document.getElementById("m-amt").textContent = fmtL(totalAmt);
-  document.getElementById("m-chaps").textContent = chActive;
-  var pct = Math.min(100,Math.round(totalDone/TARGET*100));
-  document.getElementById("pf").style.width = pct+"%";
-  document.getElementById("prog-txt").textContent = totalDone+" / "+TARGET;
+  // Use updated TOTALS for each chapter
+  for(var i=0;i<chapters.length;i++){
+    var ch=chapters[i];
+    if(TOTALS[ch.name]) ch.total=TOTALS[ch.name];
+    ch.pct=ch.total>0?Math.round((ch.done||0)/ch.total*100):0;
+    if((ch.done||0)>0) chActive++;
+  }
 
-  var sorted = chapters.slice().sort(function(a,b){return (b.pct||0)-(a.pct||0);});
-  var mx = Math.max.apply(null, sorted.map(function(c){return c.done||0;})) || 1;
-  var medals = ["🥇 1st","🥈 2nd","🥉 3rd"];
+  document.getElementById("m-total").textContent=totalDone.toLocaleString("en-IN");
+  document.getElementById("m-rem").textContent=Math.max(0,TARGET-totalDone).toLocaleString("en-IN");
+  document.getElementById("m-amt").textContent=fmtL(totalAmt);
+  var pct=Math.min(100,Math.round(totalDone/TARGET*100));
+  document.getElementById("pf").style.width=pct+"%";
+  document.getElementById("prog-txt").textContent=totalDone+" / "+TARGET;
 
-  var lbHtml = "";
+  var sorted=chapters.slice().sort(function(a,b){return (b.pct||0)-(a.pct||0);});
+  var mx=Math.max.apply(null,sorted.map(function(c){return c.done||0;}))||1;
+  var medals=["🥇 1st","🥈 2nd","🥉 3rd"];
+
+  var lbHtml="";
   for(var i=0;i<sorted.length;i++){
-    var c = sorted[i];
-    var rc = i<3?"r"+(i+1):"";
-    var medal = i<3?medals[i]:(i+1)+".";
-    var bw = Math.round((c.done||0)/mx*100);
-    lbHtml += "<div class='lr "+rc+"'>";
-    lbHtml += "<span class='lrank'>"+medal+"</span>";
-    lbHtml += "<span class='lname'>"+c.name+"</span>";
-    lbHtml += "<div class='lbw'><div class='lbf' style='width:"+bw+"%'></div></div>";
-    lbHtml += "<span class='lpct'>"+(c.pct||0)+"%</span>";
-    lbHtml += "<span class='ldone'>"+(c.done||0)+"/"+(c.total||0)+"</span>";
-    lbHtml += "<span class='lamt'>"+((c.done||0)>0?fmtL(c.amount||0):"—")+"</span>";
-    lbHtml += "</div>";
+    var c=sorted[i];
+    var rc=i<3?"r"+(i+1):"";
+    var medal=i<3?medals[i]:(i+1)+".";
+    var bw=Math.round((c.done||0)/mx*100);
+    lbHtml+="<div class='lr "+rc+"'>";
+    lbHtml+="<span class='lrank'>"+medal+"</span>";
+    lbHtml+="<span class='lname'>"+c.name+"</span>";
+    lbHtml+="<div class='lbw'><div class='lbf' style='width:"+bw+"%'></div></div>";
+    lbHtml+="<span class='lpct'>"+(c.pct||0)+"%</span>";
+    lbHtml+="<span class='ldone'>"+(c.done||0)+"/"+(c.total||0)+"</span>";
+    lbHtml+="<span class='lamt'>"+((c.done||0)>0?fmtL(c.amount||0):"—")+"</span>";
+    lbHtml+="</div>";
   }
-  document.getElementById("lb-rows").innerHTML = lbHtml;
+  document.getElementById("lb-rows").innerHTML=lbHtml;
 
-  var cgHtml = "";
+  var cgHtml="";
   for(var j=0;j<chapters.length;j++){
-    var ch = chapters[j];
-    var p = ch.pct||0;
-    var col = p>=75?"#C9A84C":p>=40?"#8B6914":"#4A1B0C";
-    cgHtml += "<div class='cc'>";
-    cgHtml += "<div class='cn'>"+ch.name+"<span>"+p+"%</span></div>";
-    cgHtml += "<div class='cbw'><div class='cbf' style='width:"+p+"%;background:"+col+"'></div></div>";
-    cgHtml += "<div class='cm'><span>"+(ch.done||0)+"/"+(ch.total||0)+" members</span><span>"+((ch.done||0)>0?fmtL(ch.amount||0):"—")+"</span></div>";
-    cgHtml += "</div>";
+    var ch=chapters[j];
+    var p=ch.pct||0;
+    var col=p>=75?"#C9A84C":p>=40?"#8B6914":"#4A1B0C";
+    cgHtml+="<div class='cc'>";
+    cgHtml+="<div class='cn'>"+ch.name+"<span>"+p+"%</span></div>";
+    cgHtml+="<div class='cbw'><div class='cbf' style='width:"+p+"%;background:"+col+"'></div></div>";
+    cgHtml+="<div class='cm'><span>"+(ch.done||0)+"/"+(ch.total||0)+" members</span><span>"+((ch.done||0)>0?fmtL(ch.amount||0):"—")+"</span></div>";
+    cgHtml+="</div>";
   }
-  document.getElementById("ch-grid").innerHTML = cgHtml;
-  document.getElementById("last-upd").textContent = "Live · "+new Date().toLocaleTimeString("en-IN",{hour:"2-digit",minute:"2-digit",second:"2-digit"});
+  document.getElementById("ch-grid").innerHTML=cgHtml;
+  document.getElementById("last-upd").textContent="Live · "+new Date().toLocaleTimeString("en-IN",{hour:"2-digit",minute:"2-digit",second:"2-digit"});
 }
 
 function loadData(){
-  document.getElementById("last-upd").textContent = "Refreshing...";
-  var xhr = new XMLHttpRequest();
-  xhr.open("GET", BACKEND, true);
-  xhr.onreadystatechange = function(){
-    if(xhr.readyState===4 && xhr.status===200){
-      try{
-        var data = JSON.parse(xhr.responseText);
-        render(data);
-      }catch(e){
-        document.getElementById("last-upd").textContent = "Error loading data";
-      }
+  document.getElementById("last-upd").textContent="Refreshing...";
+  var xhr=new XMLHttpRequest();
+  xhr.open("GET",BACKEND,true);
+  xhr.onreadystatechange=function(){
+    if(xhr.readyState===4&&xhr.status===200){
+      try{render(JSON.parse(xhr.responseText));}catch(e){document.getElementById("last-upd").textContent="Error loading data";}
     }
   };
-  xhr.onerror = function(){
-    document.getElementById("last-upd").textContent = "Connection error - retrying...";
-  };
+  xhr.onerror=function(){document.getElementById("last-upd").textContent="Connection error - retrying...";};
   xhr.send();
 }
 
