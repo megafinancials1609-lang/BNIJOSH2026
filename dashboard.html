@@ -43,7 +43,7 @@ body{background:#0D0005;font-family:Arial,sans-serif;color:#fff;padding:14px}
 </style>
 </head>
 <body>
-<div class="hero">
+<div class="timers" id="timers" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px"><div style="border:1px solid #C9A84C;border-radius:10px;background:#1A0008;padding:10px;text-align:center"><div style="font-size:8px;color:#C9A84C;text-transform:uppercase;margin-bottom:6px">Event Countdown — 19 July 2026</div><div style="display:flex;justify-content:center;gap:5px"><div style="background:#0D0005;border:1px solid rgba(201,168,76,.3);border-radius:5px;padding:4px 6px;min-width:38px"><span id="ev-d" style="font-size:18px;font-weight:700;color:#C9A84C;display:block">00</span><span style="font-size:6px;color:rgba(201,168,76,.5);text-transform:uppercase">Days</span></div><div style="background:#0D0005;border:1px solid rgba(201,168,76,.3);border-radius:5px;padding:4px 6px;min-width:38px"><span id="ev-h" style="font-size:18px;font-weight:700;color:#C9A84C;display:block">00</span><span style="font-size:6px;color:rgba(201,168,76,.5);text-transform:uppercase">Hrs</span></div><div style="background:#0D0005;border:1px solid rgba(201,168,76,.3);border-radius:5px;padding:4px 6px;min-width:38px"><span id="ev-m" style="font-size:18px;font-weight:700;color:#C9A84C;display:block">00</span><span style="font-size:6px;color:rgba(201,168,76,.5);text-transform:uppercase">Min</span></div><div style="background:#0D0005;border:1px solid rgba(201,168,76,.3);border-radius:5px;padding:4px 6px;min-width:38px"><span id="ev-s" style="font-size:18px;font-weight:700;color:#C9A84C;display:block">00</span><span style="font-size:6px;color:rgba(201,168,76,.5);text-transform:uppercase">Sec</span></div></div></div><div style="border:1px solid rgba(201,168,76,.4);border-radius:10px;background:#1A0008;padding:10px;text-align:center"><div style="font-size:8px;color:#C9A84C;text-transform:uppercase;margin-bottom:6px">Total Registered</div><div style="font-size:32px;font-weight:900;color:#C9A84C" id="timer-reg">...</div><div style="font-size:8px;color:rgba(201,168,76,.4)">out of 1,500 target</div></div></div><div class="hero">
   <p>BNI RAIPUR &amp; REST OF CHHATTISGARH</p>
   <h1>JOSH</h1>
   <p>MEMBERS DAY 2026 — LIVE DASHBOARD</p>
@@ -75,7 +75,7 @@ body{background:#0D0005;font-family:Arial,sans-serif;color:#fff;padding:14px}
 <script>
 var BACKEND="https://script.google.com/macros/s/AKfycbydiIc1WjcgMN0g3f2GS6Z7jQdKDonzOnvclV4OEgVbS7hJuUelFj-RZjzjSc0ikm4/exec";
 var TARGET=1500;
-var TOTALS={AMIGOS:82,BARONS:91,CHAMPIONS:129,DIAMOND:73,EXPERTS:40,FUTURZ:66,GLADIATORS:98,HALLMARK:70,ICONS:58,TYCOONS:48,JUPITER:68,KARMA:38,LEGENDS:40,MANTRA:34,PHOENIX:58,VICTORY:36,ALPHA:102,BILLIONAIRES:81,CRYSTALS:45,DYNAMIC:36};
+var TOTALS={AMIGOS:82,BARONS:91,CHAMPIONS:129,DIAMOND:68,EXPERTS:40,FUTURZ:66,GLADIATORS:98,HALLMARK:70,ICONS:58,TYCOONS:48,JUPITER:68,KARMA:38,LEGENDS:40,MANTRA:34,PHOENIX:58,VICTORY:36,ALPHA:102,BILLIONAIRES:81,CRYSTALS:45,DYNAMIC:36};
 
 function fmtL(n){return n>=100000?"Rs."+(n/100000).toFixed(1)+"L":"Rs."+n.toLocaleString("en-IN");}
 
@@ -91,7 +91,7 @@ function render(data){
     ch.pct=ch.total>0?Math.round((ch.done||0)/ch.total*100):0;
   }
 
-  document.getElementById("m-total").textContent=total.toLocaleString("en-IN");
+  document.getElementById("m-total").textContent=total.toLocaleString("en-IN");var tr=document.getElementById("timer-reg");if(tr)tr.textContent=total.toLocaleString("en-IN");
   document.getElementById("m-amt").textContent=fmtL(amt);
   document.getElementById("m-rem").textContent=Math.max(0,TARGET-total).toLocaleString("en-IN");
   document.getElementById("pf").style.width=pct+"%";
@@ -138,6 +138,9 @@ function loadData(){
   xhr.send();
 }
 
+function pad(n){return String(n).padStart(2,"0");}
+function tick(){var ms=new Date("2026-07-19T00:00:00")-new Date();if(ms<=0)return;document.getElementById("ev-d").textContent=pad(Math.floor(ms/86400000));document.getElementById("ev-h").textContent=pad(Math.floor((ms%86400000)/3600000));document.getElementById("ev-m").textContent=pad(Math.floor((ms%3600000)/60000));document.getElementById("ev-s").textContent=pad(Math.floor((ms%60000)/1000));}
+tick();setInterval(tick,1000);
 loadData();
 setInterval(loadData,60000);
 </script>
