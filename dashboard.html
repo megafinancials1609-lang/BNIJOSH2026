@@ -16,10 +16,10 @@ body{background:#0D0005;font-family:Arial,sans-serif;color:#fff;padding:14px}
 .mlbl{font-size:8px;color:rgba(201,168,76,.5);text-transform:uppercase;margin-bottom:4px}
 .mval{font-size:22px;font-weight:700;color:#C9A84C}
 .msub{font-size:8px;color:rgba(201,168,76,.3);margin-top:2px}
-.pw{border:1px solid rgba(201,168,76,.25);border-radius:10px;background:#1A0008;padding:12px;margin-bottom:12px}
-.pt{display:flex;justify-content:space-between;margin-bottom:8px;font-size:11px;color:rgba(201,168,76,.6)}
-.pb{width:100%;height:12px;background:#0D0005;border-radius:20px;overflow:hidden;border:1px solid rgba(201,168,76,.15)}
-.pf{height:100%;border-radius:20px;background:#C9A84C;transition:width .6s}
+.pw{border:1px solid rgba(201,168,76,.4);border-radius:10px;background:#1A0008;padding:14px;margin-bottom:12px}
+.pt{display:flex;justify-content:space-between;margin-bottom:10px;font-size:12px;color:rgba(201,168,76,.8);font-weight:bold}
+.pb{width:100%;height:16px;background:#0D0005;border-radius:20px;overflow:hidden;border:1px solid rgba(201,168,76,.3)}
+.pf{height:100%;border-radius:20px;background:linear-gradient(90deg,#8B6914,#C9A84C,#FFD700);transition:width .6s;min-width:4px}
 .sh{font-size:10px;font-weight:700;color:#C9A84C;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px}
 .lb{margin-bottom:12px}
 .lr{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;border:1px solid rgba(201,168,76,.12);background:#1A0008;margin-bottom:5px}
@@ -38,6 +38,16 @@ body{background:#0D0005;font-family:Arial,sans-serif;color:#fff;padding:14px}
 .foot span{font-size:9px;color:rgba(201,168,76,.4)}
 .rbtn{font-size:10px;padding:6px 14px;border-radius:6px;border:1px solid rgba(201,168,76,.4);background:transparent;color:#C9A84C;cursor:pointer}
 .loading{text-align:center;padding:40px;color:rgba(201,168,76,.5);font-size:13px}
+.sh{font-size:10px;font-weight:700;color:#C9A84C;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.sh::after{content:"";flex:1;height:1px;background:rgba(201,168,76,.2)}
+.cg{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin-bottom:12px}
+.cc{border:1px solid rgba(201,168,76,.18);border-radius:8px;background:#1A0008;padding:10px}
+.cn{font-size:11px;font-weight:600;color:#fff;margin-bottom:5px;display:flex;justify-content:space-between}
+.cn span{font-size:10px;color:#C9A84C;font-weight:700}
+.cbw{height:4px;background:#0D0005;border-radius:10px;overflow:hidden;margin-bottom:5px}
+.cbf{height:100%;border-radius:10px}
+.cm{display:flex;justify-content:space-between}
+.cm span{font-size:8px;color:rgba(201,168,76,.4)}
 .live{display:inline-block;width:6px;height:6px;background:#4CAF50;border-radius:50%;margin-right:4px;animation:pulse 1.5s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
 </style>
@@ -54,9 +64,41 @@ body{background:#0D0005;font-family:Arial,sans-serif;color:#fff;padding:14px}
   <div class="metric"><div class="mlbl">Registered</div><div class="mval" id="m-total">...</div><div class="msub">Target 1500</div></div>
   <div class="metric"><div class="mlbl">Collection</div><div class="mval" id="m-amt">...</div><div class="msub">Rs.</div></div>
   <div class="metric"><div class="mlbl">Remaining</div><div class="mval" id="m-rem">...</div><div class="msub">to target</div></div>
-  <div class="metric"><div class="mlbl">Total Members</div><div class="mval">1291</div><div class="msub">all chapters</div></div>
+  <div class="metric"><div class="mlbl">Total Members</div><div class="mval">1294</div><div class="msub">all chapters</div></div>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px">
+  <div style="border:1px solid rgba(76,175,80,.4);border-radius:8px;background:#0D1F0D;padding:10px;text-align:center">
+    <div style="font-size:8px;color:#4CAF50;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px">🔒 Early Bird @ Rs.1,800</div>
+    <div style="font-size:26px;font-weight:900;color:#4CAF50" id="m-1800">...</div>
+    <div style="font-size:8px;color:rgba(76,175,80,.5);margin-top:2px" id="m-1800-amt">...</div>
+  </div>
+  <div style="border:1px solid rgba(231,76,60,.4);border-radius:8px;background:#1F0D0D;padding:10px;text-align:center">
+    <div style="font-size:8px;color:#E74C3C;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px">⚠️ Late Fee @ Rs.2,100</div>
+    <div style="font-size:26px;font-weight:900;color:#E74C3C" id="m-2100">...</div>
+    <div style="font-size:8px;color:rgba(231,76,60,.5);margin-top:2px" id="m-2100-amt">...</div>
+  </div>
+  <div style="border:1px solid rgba(201,168,76,.4);border-radius:8px;background:#1A1000;padding:10px;text-align:center">
+    <div style="font-size:8px;color:#C9A84C;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px">🆕 Newly Inducted</div>
+    <div style="font-size:26px;font-weight:900;color:#C9A84C" id="m-new">10</div>
+    <div style="font-size:8px;color:rgba(201,168,76,.5);margin-top:2px" id="m-new-sub">08 July 2026</div>
+  </div>
+</div>
+<div style="border:1px solid rgba(201,168,76,.2);border-radius:8px;background:#1A0008;padding:10px;margin-bottom:12px">
+  <div style="font-size:9px;font-weight:bold;color:#C9A84C;margin-bottom:6px;letter-spacing:1px">🆕 NEWLY INDUCTED MEMBERS — 08 JULY 2026</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px">
+    <div style="font-size:9px;color:rgba(255,255,255,.7)">BARONS: <span style="color:#C9A84C;font-weight:bold">Amit Agrawal, VIMAL CHHUGANI</span></div>
+    <div style="font-size:9px;color:rgba(255,255,255,.7)">CHAMPIONS: <span style="color:#C9A84C;font-weight:bold">Hrishabh Soni</span></div>
+    <div style="font-size:9px;color:rgba(255,255,255,.7)">DIAMOND: <span style="color:#C9A84C;font-weight:bold">Kishan Chaudhary</span></div>
+    <div style="font-size:9px;color:rgba(255,255,255,.7)">GLADIATORS: <span style="color:#C9A84C;font-weight:bold">Amrish Sharma, SANTOSH Kumar Kumhar, Tushar Jain</span></div>
+    <div style="font-size:9px;color:rgba(255,255,255,.7)">ICONS: <span style="color:#C9A84C;font-weight:bold">Kaushik Katta, Somesh Agrawal</span></div>
+    <div style="font-size:9px;color:rgba(255,255,255,.7)">TYCOONS: <span style="color:#C9A84C;font-weight:bold">Rahul Sultania</span></div>
+  </div>
 </div>
 
+<div id="price-banner" style="border-radius:8px;padding:10px 14px;margin-bottom:12px;text-align:center;display:none;">
+  <div id="price-title" style="font-size:12px;font-weight:700;"></div>
+  <div id="price-sub" style="font-size:10px;margin-top:3px;"></div>
+</div>
 <div class="pw">
   <div class="pt"><span>Progress to Target 1,500</span><span id="prog-txt">...</span></div>
   <div class="pb"><div class="pf" id="pf" style="width:0%"></div></div>
@@ -67,15 +109,19 @@ body{background:#0D0005;font-family:Arial,sans-serif;color:#fff;padding:14px}
   <div id="lb-rows"><div class="loading">Loading live data...</div></div>
 </div>
 
+<div>
+  <div class="sh">All 20 Chapters</div>
+  <div class="cg" id="ch-grid"><div class="loading">Loading...</div></div>
+</div>
 <div class="foot">
   <span><span class="live"></span><span id="last-upd">Connecting...</span></span>
-  <button class="rbtn" onclick="loadData()">Refresh</button>
+  <button class="rbtn" id="rbtn" onclick="manualRefresh()">↻ Refresh</button>
 </div>
 
 <script>
 var BACKEND="https://script.google.com/macros/s/AKfycbydiIc1WjcgMN0g3f2GS6Z7jQdKDonzOnvclV4OEgVbS7hJuUelFj-RZjzjSc0ikm4/exec";
 var TARGET=1500;
-var TOTALS={AMIGOS:83,BARONS:88,CHAMPIONS:127,DIAMOND:68,EXPERTS:39,FUTURZ:66,GLADIATORS:98,HALLMARK:72,ICONS:57,TYCOONS:48,JUPITER:70,KARMA:38,LEGENDS:39,MANTRA:34,PHOENIX:59,VICTORY:39,ALPHA:101,BILLIONAIRES:81,CRYSTALS:45,DYNAMIC:39};
+var TOTALS={AMIGOS:83,BARONS:89,CHAMPIONS:127,DIAMOND:69,EXPERTS:39,FUTURZ:66,GLADIATORS:99,HALLMARK:72,ICONS:59,TYCOONS:49,JUPITER:70,KARMA:38,LEGENDS:39,MANTRA:32,PHOENIX:58,VICTORY:39,ALPHA:100,BILLIONAIRES:81,CRYSTALS:45,DYNAMIC:39};
 
 function fmtL(n){return n>=100000?"Rs."+(n/100000).toFixed(1)+"L":"Rs."+n.toLocaleString("en-IN");}
 
@@ -92,10 +138,25 @@ function render(data){
   }
 
   document.getElementById("m-total").textContent=total.toLocaleString("en-IN");var tr=document.getElementById("timer-reg");if(tr)tr.textContent=total.toLocaleString("en-IN");
+  // Separate 1800 and 2100 counts
+  var reg1800=0,amt1800=0,reg2100=0,amt2100=0;
+  if(chapters){chapters.forEach(function(ch){
+    var d=ch.done||0;
+    // Check if this chapter is a 2100 chapter (ALPHA,BARONS,DIAMOND,GLADIATORS,ICONS,MANTRA,PHOENIX,TYCOONS)
+    var lateChapters=["ALPHA","BARONS","DIAMOND","GLADIATORS","ICONS","MANTRA","PHOENIX","TYCOONS"];
+    if(lateChapters.indexOf(ch.name)>=0){reg2100+=d;amt2100+=d*2100;}
+    else{reg1800+=d;amt1800+=d*1800;}
+  });}
+  var e1800=document.getElementById("m-1800");if(e1800)e1800.textContent=reg1800.toLocaleString("en-IN");
+  var e1800a=document.getElementById("m-1800-amt");if(e1800a)e1800a.textContent="Rs."+amt1800.toLocaleString("en-IN");
+  var e2100=document.getElementById("m-2100");if(e2100)e2100.textContent=reg2100.toLocaleString("en-IN");
+  var e2100a=document.getElementById("m-2100-amt");if(e2100a)e2100a.textContent="Rs."+amt2100.toLocaleString("en-IN");
   document.getElementById("m-amt").textContent=fmtL(amt);
   document.getElementById("m-rem").textContent=Math.max(0,TARGET-total).toLocaleString("en-IN");
-  document.getElementById("pf").style.width=pct+"%";
-  document.getElementById("prog-txt").textContent=total+" / "+TARGET+" ("+pct+"%)";
+  var pfEl = document.getElementById("pf");
+  if(pfEl) { pfEl.style.width=pct+"%"; pfEl.style.minWidth=pct>0?"4px":"0"; }
+  var ptEl = document.getElementById("prog-txt");
+  if(ptEl) ptEl.textContent=total.toLocaleString("en-IN")+" / "+TARGET+" ("+pct+"%)";
 
   var sorted=chs.slice().sort(function(a,b){return (b.pct||0)-(a.pct||0);});
   var mx=Math.max.apply(null,sorted.map(function(c){return c.done||0;}))||1;
@@ -118,9 +179,30 @@ function render(data){
     html+="</div>";
   }
   document.getElementById("lb-rows").innerHTML=html;
-  document.getElementById("last-upd").textContent="Updated "+new Date().toLocaleTimeString("en-IN",{hour:"2-digit",minute:"2-digit"});
+  // Render chapter grid
+var cgHtml="";
+for(var j=0;j<chapters.length;j++){
+  var ch=chapters[j];
+  var p=ch.pct||0;
+  var col=p>=100?"#4CAF50":p>=75?"#C9A84C":p>=40?"#8B6914":"#4A1B0C";
+  cgHtml+="<div class='cc'>";
+  cgHtml+="<div class='cn'>"+ch.name+"<span>"+p+"%</span></div>";
+  cgHtml+="<div class='cbw'><div class='cbf' style='width:"+p+"%;background:"+col+"'></div></div>";
+  cgHtml+="<div class='cm'><span>"+(ch.done||0)+"/"+(ch.total||0)+"</span><span>"+((ch.done||0)>0?fmtL(ch.amount||0):"—")+"</span></div>";
+  cgHtml+="</div>";
+}
+var cgEl=document.getElementById("ch-grid");
+if(cgEl) cgEl.innerHTML=cgHtml;
+
+document.getElementById("last-upd").textContent="Updated "+new Date().toLocaleTimeString("en-IN",{hour:"2-digit",minute:"2-digit"});
 }
 
+function manualRefresh(){
+  var btn=document.getElementById("rbtn");
+  if(btn){btn.textContent="Loading...";}
+  loadData();
+  setTimeout(function(){if(btn)btn.textContent="↻ Refresh";},5000);
+}
 function loadData(){
   document.getElementById("last-upd").textContent="Loading...";
   var xhr=new XMLHttpRequest();
@@ -147,8 +229,17 @@ if(msEb>0){document.getElementById("eb-d").textContent=pad(Math.floor(msEb/86400
 else{document.getElementById("eb-d").textContent="00";document.getElementById("eb-h").textContent="00";document.getElementById("eb-m").textContent="00";document.getElementById("eb-s").textContent="00";}
 }
 tick();setInterval(tick,1000);
+// Show cached data INSTANTLY before network call
+try {
+  var cached = localStorage.getItem("bj_dash_cache");
+  if(cached) {
+    render(JSON.parse(cached));
+    document.getElementById("last-upd").textContent="Cached · Refreshing...";
+  }
+} catch(e) {}
+// Then fetch fresh data
 loadData();
-setInterval(loadData,60000);
+setInterval(loadData,30000);
 </script>
 </body>
 </html>
