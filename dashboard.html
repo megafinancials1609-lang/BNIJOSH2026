@@ -127,6 +127,7 @@ function fmtL(n){return n>=100000?"Rs."+(n/100000).toFixed(1)+"L":"Rs."+n.toLoca
 
 function render(data){
   var chs=data.chapters||[];
+  var chapters=chs;
   var total=data.totalDone||0;
   var amt=data.totalAmount||0;
   var pct=Math.min(100,Math.round(total/TARGET*100));

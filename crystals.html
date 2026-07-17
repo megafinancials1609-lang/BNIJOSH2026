@@ -1658,7 +1658,7 @@ function applyLockState(){
     var btn=document.getElementById("tb"+i);
     var lbl=document.getElementById("tl"+i);
     var mc=document.getElementById("mc"+i);
-    if(btn&&!D[key].d){
+    if(btn&&!D[key].d&&["Sarfaraj Ali"].indexOf(key)<0){
       btn.className="tbtn off locked-off";
       btn.setAttribute("onclick","");
       if(lbl){lbl.textContent="Closed";lbl.style.color="#E74C3C";}

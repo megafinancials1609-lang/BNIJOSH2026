@@ -1,0 +1,19 @@
+BNI JOSH 2026 — FINAL FILE SET (upload all to GitHub, replace existing)
+=======================================================================
+This is everything, current and correct, in one place.
+
+INCLUDED (24 files):
+- 20 chapter forms + 3 sync pages  -> all have the WIPE-GUARD (a form can no
+  longer erase a chapter; a shrinking save is refused).
+- dashboard.html -> the render fix (shows Collection/Remaining/leaderboard).
+
+UNLOCKS BAKED IN (member Rs.2,100 | family Rs.1,800 | 5+ kid Rs.1,800 — automatic):
+- CHAMPIONS : Vaibhav Jain, RAHUL Agrawal
+- CRYSTALS  : Sarfaraj Ali
+- LEGENDS   : Jyoti Jain
+- ALPHA     : Sourabh Shrivastava
+- HALLMARK  : Ashish Khandelwal, Anil Jotsinghani, Sulochna Soni
+- FUTURZ    : Aditya Agrawal added (pending) in the sheet
+
+TO DEPLOY: upload all .html files, replacing the current ones, then
+hard-refresh (Ctrl+Shift+R). Tell coordinators to refresh their page once.
