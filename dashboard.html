@@ -139,15 +139,11 @@ function render(data){
   }
 
   document.getElementById("m-total").textContent=total.toLocaleString("en-IN");var tr=document.getElementById("timer-reg");if(tr)tr.textContent=total.toLocaleString("en-IN");
-  // Separate 1800 and 2100 counts
-  var reg1800=0,amt1800=0,reg2100=0,amt2100=0;
-  if(chapters){chapters.forEach(function(ch){
-    var d=ch.done||0;
-    // Check if this chapter is a 2100 chapter (ALPHA,BARONS,DIAMOND,GLADIATORS,ICONS,MANTRA,PHOENIX,TYCOONS)
-    var lateChapters=["ALPHA","BARONS","DIAMOND","GLADIATORS","ICONS","MANTRA","PHOENIX","TYCOONS"];
-    if(lateChapters.indexOf(ch.name)>=0){reg2100+=d;amt2100+=d*2100;}
-    else{reg1800+=d;amt1800+=d*1800;}
-  });}
+  // Late fee = 4 verified late registrants (4-7 July window), per the final registered list. Registration is closed, so this is final. Family/kids fees (also Rs.1800) are included in Collection, not here — that's why they can't be derived from chapter totals.
+  var reg2100=4;
+  var reg1800=Math.max(0,total-reg2100);
+  var amt2100=reg2100*2100;
+  var amt1800=Math.max(0,(amt||0)-amt2100);  // early-bird members + all family/kids fees (both Rs.1800) — reconciles to the true Collection total
   var e1800=document.getElementById("m-1800");if(e1800)e1800.textContent=reg1800.toLocaleString("en-IN");
   var e1800a=document.getElementById("m-1800-amt");if(e1800a)e1800a.textContent="Rs."+amt1800.toLocaleString("en-IN");
   var e2100=document.getElementById("m-2100");if(e2100)e2100.textContent=reg2100.toLocaleString("en-IN");
