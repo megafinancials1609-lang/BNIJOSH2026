@@ -1,6 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script>
+/* BNI JOSH wipe-protection guard — refuses any save that would reduce a chapter's registered count below what the server already has. Fails open (never blocks a genuine registration). */
+(function(){
+  var BK="https://script.google.com/macros/s/AKfycbydiIc1WjcgMN0g3f2GS6Z7jQdKDonzOnvclV4OEgVbS7hJuUelFj-RZjzjSc0ikm4/exec";
+  function isBK(u){return typeof u==="string"&&u.indexOf(BK)===0;}
+  function check(body){
+    try{
+      var p=JSON.parse(body);
+      if(!p||!p.chapter||!p.members)return Promise.resolve(true);
+      var sending=p.members.filter(function(m){return m.done;}).length;
+      return window.__origFetch(BK+"?_t="+Date.now()).then(function(r){return r.json();}).then(function(j){
+        var ch=(j.chapters||[]).find(function(c){return c.name===p.chapter;});
+        var have=ch?(ch.done||0):0;
+        if(sending<have){
+          alert("⛔ SAVE BLOCKED\n\nThe server already has "+have+" registered for "+p.chapter+", but this page is only sending "+sending+".\n\nSaving now would ERASE "+(have-sending)+" registrations.\n\nPlease REFRESH this page to load the latest data, then try again.");
+          return false;
+        }
+        return true;
+      }).catch(function(){return true;});
+    }catch(e){return Promise.resolve(true);}
+  }
+  window.__origFetch=window.fetch.bind(window);
+  window.fetch=function(u,o){
+    if(isBK(u)&&o&&(""+(o.method||"")).toUpperCase()==="POST"&&o.body){
+      return check(o.body).then(function(ok){return ok?window.__origFetch(u,o):Promise.reject(new Error("save blocked to protect data"));});
+    }
+    return window.__origFetch(u,o);
+  };
+  var oOpen=XMLHttpRequest.prototype.open,oSend=XMLHttpRequest.prototype.send;
+  XMLHttpRequest.prototype.open=function(m,u){this.__gm=m;this.__gu=u;return oOpen.apply(this,arguments);};
+  XMLHttpRequest.prototype.send=function(body){
+    var x=this;
+    if((""+(x.__gm||"")).toUpperCase()==="POST"&&isBK(x.__gu)&&body){
+      check(body).then(function(ok){if(ok){oSend.call(x,body);}else{try{x.abort();}catch(e){}}});
+      return;
+    }
+    return oSend.apply(this,arguments);
+  };
+})();
+</script>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>BNI Josh 2026 - BARONS</title>

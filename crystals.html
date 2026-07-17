@@ -1,6 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script>
+/* BNI JOSH wipe-protection guard — refuses any save that would reduce a chapter's registered count below what the server already has. Fails open (never blocks a genuine registration). */
+(function(){
+  var BK="https://script.google.com/macros/s/AKfycbydiIc1WjcgMN0g3f2GS6Z7jQdKDonzOnvclV4OEgVbS7hJuUelFj-RZjzjSc0ikm4/exec";
+  function isBK(u){return typeof u==="string"&&u.indexOf(BK)===0;}
+  function check(body){
+    try{
+      var p=JSON.parse(body);
+      if(!p||!p.chapter||!p.members)return Promise.resolve(true);
+      var sending=p.members.filter(function(m){return m.done;}).length;
+      return window.__origFetch(BK+"?_t="+Date.now()).then(function(r){return r.json();}).then(function(j){
+        var ch=(j.chapters||[]).find(function(c){return c.name===p.chapter;});
+        var have=ch?(ch.done||0):0;
+        if(sending<have){
+          alert("⛔ SAVE BLOCKED\n\nThe server already has "+have+" registered for "+p.chapter+", but this page is only sending "+sending+".\n\nSaving now would ERASE "+(have-sending)+" registrations.\n\nPlease REFRESH this page to load the latest data, then try again.");
+          return false;
+        }
+        return true;
+      }).catch(function(){return true;});
+    }catch(e){return Promise.resolve(true);}
+  }
+  window.__origFetch=window.fetch.bind(window);
+  window.fetch=function(u,o){
+    if(isBK(u)&&o&&(""+(o.method||"")).toUpperCase()==="POST"&&o.body){
+      return check(o.body).then(function(ok){return ok?window.__origFetch(u,o):Promise.reject(new Error("save blocked to protect data"));});
+    }
+    return window.__origFetch(u,o);
+  };
+  var oOpen=XMLHttpRequest.prototype.open,oSend=XMLHttpRequest.prototype.send;
+  XMLHttpRequest.prototype.open=function(m,u){this.__gm=m;this.__gu=u;return oOpen.apply(this,arguments);};
+  XMLHttpRequest.prototype.send=function(body){
+    var x=this;
+    if((""+(x.__gm||"")).toUpperCase()==="POST"&&isBK(x.__gu)&&body){
+      check(body).then(function(ok){if(ok){oSend.call(x,body);}else{try{x.abort();}catch(e){}}});
+      return;
+    }
+    return oSend.apply(this,arguments);
+  };
+})();
+</script>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>BNI Josh 2026 - CRYSTALS</title>
@@ -1507,6 +1548,39 @@
   </div>
 </div>
 <div class="as"><span class="al">Amount</span><span class="av" id="av44">Rs.0</span></div>
+</div><div class="mc" id="mc45">
+<div class="tr">
+  <span class="sr">46.</span>
+  <span class="mn" id="mn45">Sarfaraj Ali</span>
+  <div class="tw">
+    <button class="tbtn off" id="tb45" onclick="tg(45)"><div class="tdot"></div></button>
+    <span class="tlbl" id="tl45" style="color:#888">Pending</span>
+  </div>
+</div>
+<div id="rateinfo45" style="font-size:9px;margin-bottom:8px;text-align:right"></div>
+<div class="fg">
+  <span class="fl">Family Member Name</span>
+  <input class="fi" type="text" placeholder="Type spouse name" id="fam45" autocomplete="off" oninput="D[MEM[45]].f=this.value;ua(45)">
+</div>
+<div class="kg">
+  <div class="kb">
+    <div class="kl">Kids 0-5<span>FREE</span></div>
+    <div class="kc">
+      <button class="kbtn" id="k0m45" onclick="ck(45,0,-1)">−</button>
+      <span class="knum" id="k0_45">0</span>
+      <button class="kbtn" id="k0p45" onclick="ck(45,0,1)">+</button>
+    </div>
+  </div>
+  <div class="kb">
+    <div class="kl">Kids 5+<span>Rs.1800 each</span></div>
+    <div class="kc">
+      <button class="kbtn" id="k5m45" onclick="ck(45,5,-1)">−</button>
+      <span class="knum" id="k5_45">0</span>
+      <button class="kbtn" id="k5p45" onclick="ck(45,5,1)">+</button>
+    </div>
+  </div>
+</div>
+<div class="as"><span class="al">Amount</span><span class="av" id="av45">Rs.0</span></div>
 </div></div>
 <div class="tst" id="tst">Saved!</div>
 <div class="fb">
@@ -1514,7 +1588,7 @@
   <button class="exbtn" onclick="exp()">Export</button>
 </div>
 <script>
-var CH="CRYSTALS",MEM=["Aditya Agrawal", "AJAY BANSAL", "Ajay Jaiswal", "AMAN AGRAWAL", "Anup Agrawal", "Atul Pahuja", "Atul Ramani", "AVINASH ROCHWANI", "AWDHESH AGRAWAL", "BOMPADA SAIPRIYA", "Chhabi Sahu", "Deepak Sahu", "Devashish M Kedia", "Dhanraj Ramani", "DR.SARFARAZ KHAN", "Gaurav Agrawal", "Hanish Motwani", "JACKY SONI", "Ketann Airon", "Kishan Gupta", "Kunal Motwani", "Mukul Jain", "NEERAJ . SONI", "Pankaj Agrawal", "PIYUSH AGRAWAL", "PIYUSH SINGH", "Prakash Rajpal", "Prashant Tiwari", "Rahul Dewangan", "Rajesh Agrawal", "Rishabh Agrawal", "Rohit Asrani", "SAGAR BATRA", "Sagar Kesharwani", "Santosh Sahu", "Shivani Agrawal", "SHOURYA AGRAWAL", "Shubham Modi", "Sumeet Agrawal", "Sunil Agrawal", "SUNIL RAMANI", "Sunil Vishwkarma", "USHA SHARMA", "Sharvil Sanesar", "Deepesh Agrawal"],BACKEND="https://script.google.com/macros/s/AKfycbydiIc1WjcgMN0g3f2GS6Z7jQdKDonzOnvclV4OEgVbS7hJuUelFj-RZjzjSc0ikm4/exec";
+var CH="CRYSTALS",MEM=["Aditya Agrawal", "AJAY BANSAL", "Ajay Jaiswal", "AMAN AGRAWAL", "Anup Agrawal", "Atul Pahuja", "Atul Ramani", "AVINASH ROCHWANI", "AWDHESH AGRAWAL", "BOMPADA SAIPRIYA", "Chhabi Sahu", "Deepak Sahu", "Devashish M Kedia", "Dhanraj Ramani", "DR.SARFARAZ KHAN", "Gaurav Agrawal", "Hanish Motwani", "JACKY SONI", "Ketann Airon", "Kishan Gupta", "Kunal Motwani", "Mukul Jain", "NEERAJ . SONI", "Pankaj Agrawal", "PIYUSH AGRAWAL", "PIYUSH SINGH", "Prakash Rajpal", "Prashant Tiwari", "Rahul Dewangan", "Rajesh Agrawal", "Rishabh Agrawal", "Rohit Asrani", "SAGAR BATRA", "Sagar Kesharwani", "Santosh Sahu", "Shivani Agrawal", "SHOURYA AGRAWAL", "Shubham Modi", "Sumeet Agrawal", "Sunil Agrawal", "SUNIL RAMANI", "Sunil Vishwkarma", "USHA SHARMA", "Sharvil Sanesar", "Deepesh Agrawal", "Sarfaraj Ali"],BACKEND="https://script.google.com/macros/s/AKfycbydiIc1WjcgMN0g3f2GS6Z7jQdKDonzOnvclV4OEgVbS7hJuUelFj-RZjzjSc0ikm4/exec";
 var LOCK=new Date("2026-07-07T23:59:59");
 var RATE_1800=1800,RATE_2100=2100,FAM_RATE=1800,KID5_RATE=1800;
 var D={};
@@ -1641,7 +1715,7 @@ function st(){
 }
 
 function tg(i){
-  if(isClosed()&&!D[MEM[i]].d)return; // Block new registrations after close
+  if(isClosed()&&!D[MEM[i]].d&&["Sarfaraj Ali"].indexOf(MEM[i])<0)return; // Block new registrations after close
   var key=MEM[i];
   D[key].d=!D[key].d;
   var b=document.getElementById("tb"+i),l=document.getElementById("tl"+i),c=document.getElementById("mc"+i),n=document.getElementById("mn"+i);
