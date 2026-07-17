@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BNI Josh 2026 - Live Dashboard</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0D0005;font-family:Arial,sans-serif;color:#fff;padding:14px}
+.hero{border:2px solid #C9A84C;border-radius:12px;background:#1A0008;padding:16px;text-align:center;margin-bottom:12px}
+.hero h1{color:#C9A84C;font-size:40px;letter-spacing:8px;font-weight:900}
+.hero p{font-size:10px;color:rgba(201,168,76,.6);margin-top:4px}
+.dt{font-size:13px;color:#fff;font-weight:bold;margin-top:6px}
+.metrics{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:12px}
+.metric{border:1px solid rgba(201,168,76,.25);border-radius:8px;background:#1A0008;padding:10px;text-align:center}
+.mlbl{font-size:8px;color:rgba(201,168,76,.5);text-transform:uppercase;margin-bottom:4px}
+.mval{font-size:22px;font-weight:700;color:#C9A84C}
+.msub{font-size:8px;color:rgba(201,168,76,.3);margin-top:2px}
+.pw{border:1px solid rgba(201,168,76,.4);border-radius:10px;background:#1A0008;padding:14px;margin-bottom:12px}
+.pt{display:flex;justify-content:space-between;margin-bottom:10px;font-size:12px;color:rgba(201,168,76,.8);font-weight:bold}
+.pb{width:100%;height:16px;background:#0D0005;border-radius:20px;overflow:hidden;border:1px solid rgba(201,168,76,.3)}
+.pf{height:100%;border-radius:20px;background:linear-gradient(90deg,#8B6914,#C9A84C,#FFD700);transition:width .6s;min-width:4px}
+.sh{font-size:10px;font-weight:700;color:#C9A84C;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px}
+.lb{margin-bottom:12px}
+.lr{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;border:1px solid rgba(201,168,76,.12);background:#1A0008;margin-bottom:5px}
+.lr.r1{border-color:#C9A84C;background:rgba(201,168,76,.07)}
+.lr.r2{border-color:rgba(201,168,76,.45)}
+.lr.r3{border-color:rgba(201,168,76,.25)}
+.lrank{font-size:12px;font-weight:700;min-width:30px;text-align:center;color:rgba(201,168,76,.35)}
+.lr.r1 .lrank,.lr.r2 .lrank,.lr.r3 .lrank{color:#C9A84C}
+.lname{font-size:12px;font-weight:600;color:#fff;min-width:90px}
+.lbw{flex:1;height:6px;background:#0D0005;border-radius:10px;overflow:hidden}
+.lbf{height:100%;border-radius:10px;background:#C9A84C}
+.lpct{font-size:11px;font-weight:700;color:#C9A84C;min-width:34px;text-align:right}
+.ldone{font-size:10px;color:rgba(201,168,76,.45);min-width:44px;text-align:right}
+.lamt{font-size:9px;color:rgba(201,168,76,.55);min-width:60px;text-align:right}
+.foot{display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(201,168,76,.15);padding-top:10px;margin-top:4px}
+.foot span{font-size:9px;color:rgba(201,168,76,.4)}
+.rbtn{font-size:10px;padding:6px 14px;border-radius:6px;border:1px solid rgba(201,168,76,.4);background:transparent;color:#C9A84C;cursor:pointer}
+.loading{text-align:center;padding:40px;color:rgba(201,168,76,.5);font-size:13px}
+.sh{font-size:10px;font-weight:700;color:#C9A84C;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.sh::after{content:"";flex:1;height:1px;background:rgba(201,168,76,.2)}
+.cg{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin-bottom:12px}
+.cc{border:1px solid rgba(201,168,76,.18);border-radius:8px;background:#1A0008;padding:10px}
+.cn{font-size:11px;font-weight:600;color:#fff;margin-bottom:5px;display:flex;justify-content:space-between}
+.cn span{font-size:10px;color:#C9A84C;font-weight:700}
+.cbw{height:4px;background:#0D0005;border-radius:10px;overflow:hidden;margin-bottom:5px}
+.cbf{height:100%;border-radius:10px}
+.cm{display:flex;justify-content:space-between}
+.cm span{font-size:8px;color:rgba(201,168,76,.4)}
+.live{display:inline-block;width:6px;height:6px;background:#4CAF50;border-radius:50%;margin-right:4px;animation:pulse 1.5s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+</style>
+</head>
+<body>
+<div class="timers" id="timers" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px"><div style="border:1px solid #C9A84C;border-radius:10px;background:#1A0008;padding:10px;text-align:center"><div style="font-size:8px;color:#C9A84C;text-transform:uppercase;margin-bottom:6px">Event Countdown — 19 July 2026</div><div style="display:flex;justify-content:center;gap:5px"><div style="background:#0D0005;border:1px solid rgba(201,168,76,.3);border-radius:5px;padding:4px 6px;min-width:38px"><span id="ev-d" style="font-size:18px;font-weight:700;color:#C9A84C;display:block">00</span><span style="font-size:6px;color:rgba(201,168,76,.5);text-transform:uppercase">Days</span></div><div style="background:#0D0005;border:1px solid rgba(201,168,76,.3);border-radius:5px;padding:4px 6px;min-width:38px"><span id="ev-h" style="font-size:18px;font-weight:700;color:#C9A84C;display:block">00</span><span style="font-size:6px;color:rgba(201,168,76,.5);text-transform:uppercase">Hrs</span></div><div style="background:#0D0005;border:1px solid rgba(201,168,76,.3);border-radius:5px;padding:4px 6px;min-width:38px"><span id="ev-m" style="font-size:18px;font-weight:700;color:#C9A84C;display:block">00</span><span style="font-size:6px;color:rgba(201,168,76,.5);text-transform:uppercase">Min</span></div><div style="background:#0D0005;border:1px solid rgba(201,168,76,.3);border-radius:5px;padding:4px 6px;min-width:38px"><span id="ev-s" style="font-size:18px;font-weight:700;color:#C9A84C;display:block">00</span><span style="font-size:6px;color:rgba(201,168,76,.5);text-transform:uppercase">Sec</span></div></div></div><div style="border:1px solid rgba(201,168,76,.4);border-radius:10px;background:#1A0008;padding:10px;text-align:center"><div style="font-size:8px;color:#C9A84C;text-transform:uppercase;margin-bottom:6px">Early Bird Ends — 3 July 2026</div><div style="display:flex;justify-content:center;gap:5px"><div style="background:#0D0005;border:1px solid rgba(201,168,76,.3);border-radius:5px;padding:4px 6px;min-width:38px"><span id="eb-d" style="font-size:18px;font-weight:700;color:#C9A84C;display:block">00</span><span style="font-size:6px;color:rgba(201,168,76,.5);text-transform:uppercase">Days</span></div><div style="background:#0D0005;border:1px solid rgba(201,168,76,.3);border-radius:5px;padding:4px 6px;min-width:38px"><span id="eb-h" style="font-size:18px;font-weight:700;color:#C9A84C;display:block">00</span><span style="font-size:6px;color:rgba(201,168,76,.5);text-transform:uppercase">Hrs</span></div><div style="background:#0D0005;border:1px solid rgba(201,168,76,.3);border-radius:5px;padding:4px 6px;min-width:38px"><span id="eb-m" style="font-size:18px;font-weight:700;color:#C9A84C;display:block">00</span><span style="font-size:6px;color:rgba(201,168,76,.5);text-transform:uppercase">Min</span></div><div style="background:#0D0005;border:1px solid rgba(201,168,76,.3);border-radius:5px;padding:4px 6px;min-width:38px"><span id="eb-s" style="font-size:18px;font-weight:700;color:#C9A84C;display:block">00</span><span style="font-size:6px;color:rgba(201,168,76,.5);text-transform:uppercase">Sec</span></div></div></div></div><div class="hero">
+  <p>BNI RAIPUR &amp; REST OF CHHATTISGARH</p>
+  <h1>JOSH</h1>
+  <p>MEMBERS DAY 2026 — LIVE DASHBOARD</p>
+  <div class="dt">19 July 2026 &bull; Hotel Babylon International, Raipur</div>
+</div>
+
+<div class="metrics">
+  <div class="metric"><div class="mlbl">Registered</div><div class="mval" id="m-total">...</div><div class="msub">Target 1500</div></div>
+  <div class="metric"><div class="mlbl">Collection</div><div class="mval" id="m-amt">...</div><div class="msub">Rs.</div></div>
+  <div class="metric"><div class="mlbl">Remaining</div><div class="mval" id="m-rem">...</div><div class="msub">not yet registered</div></div>
+  <div class="metric"><div class="mlbl">Total Members</div><div class="mval">1292</div><div class="msub">all chapters</div></div>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px">
+  <div style="border:1px solid rgba(76,175,80,.4);border-radius:8px;background:#0D1F0D;padding:10px;text-align:center">
+    <div style="font-size:8px;color:#4CAF50;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px">🔒 Early Bird @ Rs.1,800</div>
+    <div style="font-size:26px;font-weight:900;color:#4CAF50" id="m-1800">...</div>
+    <div style="font-size:8px;color:rgba(76,175,80,.5);margin-top:2px" id="m-1800-amt">...</div>
+  </div>
+  <div style="border:1px solid rgba(231,76,60,.4);border-radius:8px;background:#1F0D0D;padding:10px;text-align:center">
+    <div style="font-size:8px;color:#E74C3C;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px">⚠️ Late Fee @ Rs.2,100</div>
+    <div style="font-size:26px;font-weight:900;color:#E74C3C" id="m-2100">...</div>
+    <div style="font-size:8px;color:rgba(231,76,60,.5);margin-top:2px" id="m-2100-amt">...</div>
+  </div>
+  <div style="border:1px solid rgba(201,168,76,.4);border-radius:8px;background:#1A1000;padding:10px;text-align:center">
+    <div style="font-size:8px;color:#C9A84C;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px">🆕 Newly Inducted</div>
+    <div style="font-size:26px;font-weight:900;color:#C9A84C" id="m-new">10</div>
+    <div style="font-size:8px;color:rgba(201,168,76,.5);margin-top:2px" id="m-new-sub">08 July 2026</div>
+  </div>
+</div>
+<div style="border:1px solid rgba(201,168,76,.2);border-radius:8px;background:#1A0008;padding:10px;margin-bottom:12px">
+  <div style="font-size:9px;font-weight:bold;color:#C9A84C;margin-bottom:6px;letter-spacing:1px">🆕 NEWLY INDUCTED MEMBERS — 08 JULY 2026</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px">
+    <div style="font-size:9px;color:rgba(255,255,255,.7)">BARONS: <span style="color:#C9A84C;font-weight:bold">Amit Agrawal, VIMAL CHHUGANI</span></div>
+    <div style="font-size:9px;color:rgba(255,255,255,.7)">CHAMPIONS: <span style="color:#C9A84C;font-weight:bold">Hrishabh Soni</span></div>
+    <div style="font-size:9px;color:rgba(255,255,255,.7)">DIAMOND: <span style="color:#C9A84C;font-weight:bold">Kishan Chaudhary</span></div>
+    <div style="font-size:9px;color:rgba(255,255,255,.7)">GLADIATORS: <span style="color:#C9A84C;font-weight:bold">Amrish Sharma, SANTOSH Kumar Kumhar, Tushar Jain</span></div>
+    <div style="font-size:9px;color:rgba(255,255,255,.7)">ICONS: <span style="color:#C9A84C;font-weight:bold">Kaushik Katta, Somesh Agrawal</span></div>
+    <div style="font-size:9px;color:rgba(255,255,255,.7)">TYCOONS: <span style="color:#C9A84C;font-weight:bold">Rahul Sultania</span></div>
+  </div>
+</div>
+
+<div id="price-banner" style="border-radius:8px;padding:10px 14px;margin-bottom:12px;text-align:center;display:none;">
+  <div id="price-title" style="font-size:12px;font-weight:700;"></div>
+  <div id="price-sub" style="font-size:10px;margin-top:3px;"></div>
+</div>
+<div class="pw">
+  <div class="pt"><span>Progress to Target 1,500</span><span id="prog-txt">...</span></div>
+  <div class="pb"><div class="pf" id="pf" style="width:0%"></div></div>
+</div>
+
+<div class="lb">
+  <div class="sh">Chapter Leaderboard</div>
+  <div id="lb-rows"><div class="loading">Loading live data...</div></div>
+</div>
+
+<div>
+  <div class="sh">All 20 Chapters</div>
+  <div class="cg" id="ch-grid"><div class="loading">Loading...</div></div>
+</div>
+<div class="foot">
+  <span><span class="live"></span><span id="last-upd">Connecting...</span></span>
+  <button class="rbtn" id="rbtn" onclick="manualRefresh()">↻ Refresh</button>
+</div>
+
+<script>
+var BACKEND="https://script.google.com/macros/s/AKfycbydiIc1WjcgMN0g3f2GS6Z7jQdKDonzOnvclV4OEgVbS7hJuUelFj-RZjzjSc0ikm4/exec";
+var TARGET=1500;
+var TOTAL_MEMBERS=1292;
+var TOTALS={AMIGOS:83,BARONS:89,CHAMPIONS:127,DIAMOND:69,EXPERTS:39,FUTURZ:66,GLADIATORS:99,HALLMARK:72,ICONS:59,TYCOONS:49,JUPITER:70,KARMA:38,LEGENDS:39,MANTRA:32,PHOENIX:58,VICTORY:39,ALPHA:100,BILLIONAIRES:81,CRYSTALS:45,DYNAMIC:39};
+
+function fmtL(n){return n>=100000?"Rs."+(n/100000).toFixed(1)+"L":"Rs."+n.toLocaleString("en-IN");}
+
+function render(data){
+  var chs=data.chapters||[];
+  var chapters=chs;
+  var total=data.totalDone||0;
+  var amt=data.totalAmount||0;
+  var pct=Math.min(100,Math.round(total/TARGET*100));
+
+  for(var i=0;i<chs.length;i++){
+    var ch=chs[i];
+    if(TOTALS[ch.name]) ch.total=TOTALS[ch.name];
+    ch.pct=ch.total>0?Math.round((ch.done||0)/ch.total*100):0;
+  }
+
+  document.getElementById("m-total").textContent=total.toLocaleString("en-IN");var tr=document.getElementById("timer-reg");if(tr)tr.textContent=total.toLocaleString("en-IN");
+  // Late fee = 4 verified late registrants (4-7 July window), per the final registered list. Registration is closed, so this is final. Family/kids fees (also Rs.1800) are included in Collection, not here — that's why they can't be derived from chapter totals.
+  var reg2100=4;
+  var reg1800=Math.max(0,total-reg2100);
+  var amt2100=reg2100*2100;
+  var amt1800=Math.max(0,(amt||0)-amt2100);  // early-bird members + all family/kids fees (both Rs.1800) — reconciles to the true Collection total
+  var e1800=document.getElementById("m-1800");if(e1800)e1800.textContent=reg1800.toLocaleString("en-IN");
+  var e1800a=document.getElementById("m-1800-amt");if(e1800a)e1800a.textContent="Rs."+amt1800.toLocaleString("en-IN");
+  var e2100=document.getElementById("m-2100");if(e2100)e2100.textContent=reg2100.toLocaleString("en-IN");
+  var e2100a=document.getElementById("m-2100-amt");if(e2100a)e2100a.textContent="Rs."+amt2100.toLocaleString("en-IN");
+  document.getElementById("m-amt").textContent=fmtL(amt);
+  document.getElementById("m-rem").textContent=Math.max(0,TOTAL_MEMBERS-total).toLocaleString("en-IN");
+  var pfEl = document.getElementById("pf");
+  if(pfEl) { pfEl.style.width=pct+"%"; pfEl.style.minWidth=pct>0?"4px":"0"; }
+  var ptEl = document.getElementById("prog-txt");
+  if(ptEl) ptEl.textContent=total.toLocaleString("en-IN")+" / "+TARGET+" ("+pct+"%)";
+
+  var sorted=chs.slice().sort(function(a,b){return (b.pct||0)-(a.pct||0);});
+  var mx=Math.max.apply(null,sorted.map(function(c){return c.done||0;}))||1;
+  var medals=["1st","2nd","3rd"];
+  var emo=["🥇","🥈","🥉"];
+
+  var html="";
+  for(var i=0;i<sorted.length;i++){
+    var c=sorted[i];
+    var rc=i<3?"r"+(i+1):"";
+    var medal=i<3?emo[i]+" "+medals[i]:(i+1)+".";
+    var bw=Math.round((c.done||0)/mx*100);
+    html+="<div class='lr "+rc+"'>";
+    html+="<span class='lrank'>"+medal+"</span>";
+    html+="<span class='lname'>"+c.name+"</span>";
+    html+="<div class='lbw'><div class='lbf' style='width:"+bw+"%'></div></div>";
+    html+="<span class='lpct'>"+(c.pct||0)+"%</span>";
+    html+="<span class='ldone'>"+(c.done||0)+"/"+(c.total||0)+"</span>";
+    html+="<span class='lamt'>"+((c.done||0)>0?fmtL(c.amount||0):"")+"</span>";
+    html+="</div>";
+  }
+  document.getElementById("lb-rows").innerHTML=html;
+  // Render chapter grid
+var cgHtml="";
+for(var j=0;j<chapters.length;j++){
+  var ch=chapters[j];
+  var p=ch.pct||0;
+  var col=p>=100?"#4CAF50":p>=75?"#C9A84C":p>=40?"#8B6914":"#4A1B0C";
+  cgHtml+="<div class='cc'>";
+  cgHtml+="<div class='cn'>"+ch.name+"<span>"+p+"%</span></div>";
+  cgHtml+="<div class='cbw'><div class='cbf' style='width:"+p+"%;background:"+col+"'></div></div>";
+  cgHtml+="<div class='cm'><span>"+(ch.done||0)+"/"+(ch.total||0)+"</span><span>"+((ch.done||0)>0?fmtL(ch.amount||0):"—")+"</span></div>";
+  cgHtml+="</div>";
+}
+var cgEl=document.getElementById("ch-grid");
+if(cgEl) cgEl.innerHTML=cgHtml;
+
+document.getElementById("last-upd").textContent="Updated "+new Date().toLocaleTimeString("en-IN",{hour:"2-digit",minute:"2-digit"});
+}
+
+function manualRefresh(){
+  var btn=document.getElementById("rbtn");
+  if(btn){btn.textContent="Loading...";}
+  loadData();
+  setTimeout(function(){if(btn)btn.textContent="↻ Refresh";},5000);
+}
+function loadData(){
+  document.getElementById("last-upd").textContent="Loading...";
+  var xhr=new XMLHttpRequest();
+  xhr.open("GET",BACKEND,true);
+  xhr.onreadystatechange=function(){
+    if(xhr.readyState===4){
+      if(xhr.status===200){
+        try{render(JSON.parse(xhr.responseText));}
+        catch(e){document.getElementById("last-upd").textContent="Parse error";}
+      } else {
+        document.getElementById("last-upd").textContent="Connection error";
+      }
+    }
+  };
+  xhr.send();
+}
+
+function pad(n){return String(n).padStart(2,"0");}
+function tick(){
+var msEv=new Date("2026-07-19T00:00:00")-new Date();
+if(msEv>0){document.getElementById("ev-d").textContent=pad(Math.floor(msEv/86400000));document.getElementById("ev-h").textContent=pad(Math.floor((msEv%86400000)/3600000));document.getElementById("ev-m").textContent=pad(Math.floor((msEv%3600000)/60000));document.getElementById("ev-s").textContent=pad(Math.floor((msEv%60000)/1000));}
+var msEb=new Date("2026-07-03T23:59:59")-new Date();
+if(msEb>0){document.getElementById("eb-d").textContent=pad(Math.floor(msEb/86400000));document.getElementById("eb-h").textContent=pad(Math.floor((msEb%86400000)/3600000));document.getElementById("eb-m").textContent=pad(Math.floor((msEb%3600000)/60000));document.getElementById("eb-s").textContent=pad(Math.floor((msEb%60000)/1000));}
+else{document.getElementById("eb-d").textContent="00";document.getElementById("eb-h").textContent="00";document.getElementById("eb-m").textContent="00";document.getElementById("eb-s").textContent="00";}
+}
+tick();setInterval(tick,1000);
+// Show cached data INSTANTLY before network call
+try {
+  var cached = localStorage.getItem("bj_dash_cache");
+  if(cached) {
+    render(JSON.parse(cached));
+    document.getElementById("last-upd").textContent="Cached · Refreshing...";
+  }
+} catch(e) {}
+// Then fetch fresh data
+loadData();
+setInterval(loadData,30000);
+</script>
+</body>
+</html>
