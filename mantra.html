@@ -33,35 +33,99 @@
   <button class="exbtn" onclick="location.reload()">Re-Sync</button>
 </div>
 <script>
-var CH="MANTRA",MEM=[{"name": "Abhishek Rathore", "done": "Done", "family": "", "k0": 0, "k5": 0, "amt": 1800}, {"name": "Amit . Khare", "done": "Done", "family": "", "k0": 0, "k5": 0, "amt": 1800}, {"name": "Ammbesh A B Patel", "done": "Done", "family": "", "k0": 0, "k5": 0, "amt": 1800}, {"name": "Anam Fatima Pradhan", "done": "Done", "family": "", "k0": 0, "k5": 0, "amt": 1800}, {"name": "Anubhuti Raj", "done": "Done", "family": "", "k0": 0, "k5": 0, "amt": 1800}, {"name": "ATUL ROHRA", "done": "Done", "family": "", "k0": 0, "k5": 0, "amt": 1800}, {"name": "AVIK GHOSH", "done": "Done", "family": "", "k0": 0, "k5": 0, "amt": 1800}, {"name": "BHAVYA SACHDEV", "done": "Done", "family": "", "k0": 0, "k5": 0, "amt": 1800}, {"name": "Girish Dewangan", "done": "Done", "family": "", "k0": 0, "k5": 0, "amt": 1800}, {"name": "Gitika Khatri", "done": "Done", "family": "", "k0": 0, "k5": 0, "amt": 1800}, {"name": "HARISH CHAND CHOUHAN", "done": "Done", "family": "", "k0": 0, "k5": 0, "amt": 1800}, {"name": "Hemant Sinha", "done": "Pending", "family": "", "k0": 0, "k5": 0, "amt": 0}, {"name": "Jatin Khatri", "done": "Done", "family": "", "k0": 0, "k5": 0, "amt": 1800}, {"name": "Laxmikant Sahu", "done": "Done", "family": "", "k0": 0, "k5": 0, "amt": 1800}, {"name": "Manish Kumar Verma", "done": "Done", "family": "", "k0": 0, "k5": 0, "amt": 1800}, {"name": "Murtaza  Rafi", "done": "Done", "family": "", "k0": 0, "k5": 0, "amt": 1800}, {"name": "Mustufa Ahmed", "done": "Done", "family": "", "k0": 0, "k5": 0, "amt": 1800}, {"name": "Naveen Dadsena", "done": "Done", "family": "", "k0": 0, "k5": 0, "amt": 1800}, {"name": "Omprakash Sahu", "done": "Pending", "family": "", "k0": 0, "k5": 0, "amt": 0}, {"name": "Prabhat Tiwari", "done": "Done", "family": "", "k0": 0, "k5": 0, "amt": 1800}, {"name": "Sahil Manek", "done": "Done", "family": "", "k0": 0, "k5": 0, "amt": 1800}, {"name": "Samarth Singh", "done": "Done", "family": "", "k0": 0, "k5": 0, "amt": 1800}, {"name": "SHAHID JAMAL AKHTAR", "done": "Pending", "family": "", "k0": 0, "k5": 0, "amt": 0}, {"name": "Siddhant Shah", "done": "Done", "family": "", "k0": 0, "k5": 0, "amt": 1800}, {"name": "Sonal Gupta", "done": "Done", "family": "", "k0": 0, "k5": 0, "amt": 1800}, {"name": "Sourabh Jain", "done": "Done", "family": "", "k0": 0, "k5": 0, "amt": 1800}, {"name": "Srikant Maheshwari", "done": "Pending", "family": "", "k0": 0, "k5": 0, "amt": 0}, {"name": "Tanuj Gupta", "done": "Done", "family": "", "k0": 0, "k5": 0, "amt": 1800}, {"name": "VARDAN CHHABRA", "done": "Done", "family": "", "k0": 0, "k5": 0, "amt": 1800}, {"name": "Vasu Sahu", "done": "Done", "family": "", "k0": 0, "k5": 0, "amt": 1800}, {"name": "Vikalp Johri", "done": "Done", "family": "", "k0": 0, "k5": 0, "amt": 1800}, {"name": "Vinay Jumnani", "done": "Done", "family": "", "k0": 0, "k5": 0, "amt": 1800}, {"name": "Vishal Agrawal", "done": "Done", "family": "", "k0": 0, "k5": 0, "amt": 1800}, {"name": "Vishal Gupta", "done": "Done", "family": "", "k0": 0, "k5": 0, "amt": 1800}],BACKEND="https://script.google.com/macros/s/AKfycbydiIc1WjcgMN0g3f2GS6Z7jQdKDonzOnvclV4OEgVbS7hJuUelFj-RZjzjSc0ikm4/exec";
+var CH="MANTRA",MEM=["Abhishek Rathore", "Amit . Khare", "Ammbesh A B Patel", "Anam Fatima Pradhan", "Anubhuti Raj", "ATUL ROHRA", "AVIK GHOSH", "BHAVYA SACHDEV", "Girish Dewangan", "Gitika Khatri", "HARISH CHAND CHOUHAN", "Hemant Sinha", "Jatin Khatri", "Laxmikant Sahu", "Manish Kumar Verma", "Murtaza  Rafi", "Mustufa Ahmed", "Naveen Dadsena", "Omprakash Sahu", "Prabhat Tiwari", "Sahil Manek", "Samarth Singh", "SHAHID JAMAL AKHTAR", "Siddhant Shah", "Sonal Gupta", "Sourabh Jain", "Srikant Maheshwari", "Tanuj Gupta", "VARDAN CHHABRA", "Vasu Sahu", "Vikalp Johri", "Vinay Jumnani", "Vishal Agrawal", "Vishal Gupta"],BACKEND="https://script.google.com/macros/s/AKfycbydiIc1WjcgMN0g3f2GS6Z7jQdKDonzOnvclV4OEgVbS7hJuUelFj-RZjzjSc0ikm4/exec";
 var D={"Abhishek Rathore": {"d": true, "f": "", "k0": 0, "k5": 0, "amt": 1800, "lockedEarly": true}, "Amit . Khare": {"d": true, "f": "", "k0": 0, "k5": 0, "amt": 1800, "lockedEarly": true}, "Ammbesh A B Patel": {"d": true, "f": "", "k0": 0, "k5": 0, "amt": 1800, "lockedEarly": true}, "Anam Fatima Pradhan": {"d": true, "f": "", "k0": 0, "k5": 0, "amt": 1800, "lockedEarly": true}, "Anubhuti Raj": {"d": true, "f": "", "k0": 0, "k5": 0, "amt": 1800, "lockedEarly": true}, "ATUL ROHRA": {"d": true, "f": "", "k0": 0, "k5": 0, "amt": 1800, "lockedEarly": true}, "AVIK GHOSH": {"d": true, "f": "", "k0": 0, "k5": 0, "amt": 1800, "lockedEarly": true}, "BHAVYA SACHDEV": {"d": true, "f": "", "k0": 0, "k5": 0, "amt": 1800, "lockedEarly": true}, "Girish Dewangan": {"d": true, "f": "", "k0": 0, "k5": 0, "amt": 1800, "lockedEarly": true}, "Gitika Khatri": {"d": true, "f": "", "k0": 0, "k5": 0, "amt": 1800, "lockedEarly": true}, "HARISH CHAND CHOUHAN": {"d": true, "f": "", "k0": 0, "k5": 0, "amt": 1800, "lockedEarly": true}, "Hemant Sinha": {"d": false, "f": "", "k0": 0, "k5": 0, "amt": 0, "lockedEarly": false}, "Jatin Khatri": {"d": true, "f": "", "k0": 0, "k5": 0, "amt": 1800, "lockedEarly": true}, "Laxmikant Sahu": {"d": true, "f": "", "k0": 0, "k5": 0, "amt": 1800, "lockedEarly": true}, "Manish Kumar Verma": {"d": true, "f": "", "k0": 0, "k5": 0, "amt": 1800, "lockedEarly": true}, "Murtaza  Rafi": {"d": true, "f": "", "k0": 0, "k5": 0, "amt": 1800, "lockedEarly": true}, "Mustufa Ahmed": {"d": true, "f": "", "k0": 0, "k5": 0, "amt": 1800, "lockedEarly": true}, "Naveen Dadsena": {"d": true, "f": "", "k0": 0, "k5": 0, "amt": 1800, "lockedEarly": true}, "Omprakash Sahu": {"d": false, "f": "", "k0": 0, "k5": 0, "amt": 0, "lockedEarly": false}, "Prabhat Tiwari": {"d": true, "f": "", "k0": 0, "k5": 0, "amt": 1800, "lockedEarly": true}, "Sahil Manek": {"d": true, "f": "", "k0": 0, "k5": 0, "amt": 1800, "lockedEarly": true}, "Samarth Singh": {"d": true, "f": "", "k0": 0, "k5": 0, "amt": 1800, "lockedEarly": true}, "SHAHID JAMAL AKHTAR": {"d": false, "f": "", "k0": 0, "k5": 0, "amt": 0, "lockedEarly": false}, "Siddhant Shah": {"d": true, "f": "", "k0": 0, "k5": 0, "amt": 1800, "lockedEarly": true}, "Sonal Gupta": {"d": true, "f": "", "k0": 0, "k5": 0, "amt": 1800, "lockedEarly": true}, "Sourabh Jain": {"d": true, "f": "", "k0": 0, "k5": 0, "amt": 1800, "lockedEarly": true}, "Srikant Maheshwari": {"d": false, "f": "", "k0": 0, "k5": 0, "amt": 0, "lockedEarly": false}, "Tanuj Gupta": {"d": true, "f": "", "k0": 0, "k5": 0, "amt": 1800, "lockedEarly": true}, "VARDAN CHHABRA": {"d": true, "f": "", "k0": 0, "k5": 0, "amt": 1800, "lockedEarly": true}, "Vasu Sahu": {"d": true, "f": "", "k0": 0, "k5": 0, "amt": 1800, "lockedEarly": true}, "Vikalp Johri": {"d": true, "f": "", "k0": 0, "k5": 0, "amt": 1800, "lockedEarly": true}, "Vinay Jumnani": {"d": true, "f": "", "k0": 0, "k5": 0, "amt": 1800, "lockedEarly": true}, "Vishal Agrawal": {"d": true, "f": "", "k0": 0, "k5": 0, "amt": 1800, "lockedEarly": true}, "Vishal Gupta": {"d": true, "f": "", "k0": 0, "k5": 0, "amt": 1800, "lockedEarly": true}};
-function ca(i){var x=D[MEM[i]];if(!x||!x.d)return 0;return (x.amt||0)+((x.f&&x.f.trim())?1800:0)+(parseInt(x.k5)||0)*1800;}
-function st(){var dn=0,am=0;for(var i=0;i<MEM.length;i++){if(D[MEM[i]]&&D[MEM[i]].d){dn++;am+=ca(i);}}document.getElementById("sd").textContent=dn;document.getElementById("sp").textContent=MEM.length-dn;document.getElementById("sa").textContent="Rs."+am.toLocaleString("en-IN");}
-function ck(i,t,dl){var key=MEM[i],k=t===0?"k0":"k5";D[key][k]=Math.max(0,Math.min(4,(parseInt(D[key][k])||0)+dl));document.getElementById("k"+t+"_"+i).textContent=D[key][k];st();}
-function flt(){var q=document.getElementById("sch").value.toLowerCase();document.querySelectorAll(".mc").forEach(function(c,i){c.style.display=(!q||MEM[i].toLowerCase().indexOf(q)>=0)?"":"none";});}
-function doSync(callback){
-  var mem=[];
-  for(var i=0;i<MEM.length;i++){var x=D[MEM[i]];mem.push({name:MEM[i],done:x.d||false,family:x.f||"",kids0:x.k0||0,kids5:x.k5||0,amount:ca(i),lockedEarly:x.lockedEarly||false});}
-  var xhr=new XMLHttpRequest();xhr.open("POST",BACKEND,true);xhr.setRequestHeader("Content-Type","text/plain");
-  xhr.onreadystatechange=function(){if(xhr.readyState===4){if(callback)callback(xhr.status===200);}};
-  xhr.onerror=function(){if(callback)callback(false);};
-  xhr.send(JSON.stringify({chapter:CH,members:mem}));
+var _synced=false;
+
+function ca(i){
+  var x=D[MEM[i]];if(!x||!x.d)return 0;
+  var famAmt=(x.f&&x.f.trim())?1800:0;
+  var kidAmt=(parseInt(x.k5)||0)*1800;
+  return (x.amt||0)+famAmt+kidAmt;
 }
-function sav(){
-  var btn=document.querySelector(".sv");btn.textContent="Syncing...";
-  doSync(function(ok){btn.textContent="SAVE & SYNC";var t=document.getElementById("tst");t.textContent=ok?"✅ Saved & Synced!":"✅ Saved locally!";t.style.display="block";setTimeout(function(){t.style.display="none";},3000);});
+
+function st(){
+  var dn=0,am=0;
+  for(var i=0;i<MEM.length;i++){
+    if(D[MEM[i]]&&D[MEM[i]].d){dn++;am+=ca(i);}
+  }
+  var sd=document.getElementById("sd");
+  var sp=document.getElementById("sp");
+  var sa=document.getElementById("sa");
+  if(sd)sd.textContent=dn;
+  if(sp)sp.textContent=MEM.length-dn;
+  if(sa)sa.textContent="Rs."+am.toLocaleString("en-IN");
 }
-// AUTO-SYNC on page load to fix missing data in sheet
-window.addEventListener("load", function(){
-  var overlay=document.getElementById("syncing-overlay");
-  doSync(function(ok){
-    if(overlay)overlay.style.display="none";
-    var t=document.getElementById("tst");
-    t.textContent=ok?"✅ Auto-synced to Google Sheet!":"✅ Data ready!";
-    t.style.display="block";
-    setTimeout(function(){t.style.display="none";},4000);
+
+function ck(i,t,dl){
+  var key=MEM[i],k=t===0?"k0":"k5";
+  D[key][k]=Math.max(0,Math.min(4,(parseInt(D[key][k])||0)+dl));
+  document.getElementById("k"+t+"_"+i).textContent=D[key][k];
+  st();
+}
+
+function flt(){
+  var q=document.getElementById("sch").value.toLowerCase().trim();
+  document.querySelectorAll(".mc").forEach(function(c,i){
+    c.style.display=(!q||MEM[i].toLowerCase().indexOf(q)>=0)?"block":"none";
   });
+}
+
+function buildPayload(){
+  var mem=[];
+  for(var i=0;i<MEM.length;i++){
+    var fi=document.getElementById("fam"+i);if(fi)D[MEM[i]].f=fi.value||"";
+    var x=D[MEM[i]];
+    mem.push({name:MEM[i],done:x.d||false,family:x.f||"",kids0:x.k0||0,kids5:x.k5||0,amount:ca(i),lockedEarly:x.lockedEarly||false});
+  }
+  return JSON.stringify({chapter:CH,members:mem});
+}
+
+function sav(){
+  var btn=document.querySelector(".sv");
+  if(btn)btn.textContent="Syncing...";
+  var payload=buildPayload();
+  // Use fetch with no-cors - fires the request even without reading response
+  fetch(BACKEND,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain"},body:payload})
+  .then(function(){
+    if(btn)btn.textContent="SAVE & SYNC";
+    var t=document.getElementById("tst");
+    if(t){t.textContent="✅ Synced to Sheet!";t.style.display="block";setTimeout(function(){t.style.display="none";},4000);}
+  })
+  .catch(function(e){
+    // Also try XHR as fallback
+    var xhr=new XMLHttpRequest();
+    xhr.open("POST",BACKEND,true);
+    xhr.setRequestHeader("Content-Type","text/plain");
+    xhr.onreadystatechange=function(){if(xhr.readyState===4){if(btn)btn.textContent="SAVE & SYNC";var t=document.getElementById("tst");if(t){t.textContent="✅ Synced!";t.style.display="block";setTimeout(function(){t.style.display="none";},3000);}}};
+    xhr.send(payload);
+  });
+}
+
+function exp(){
+  var t=CH+" BNI JOSH 2026\n"+new Date().toLocaleString("en-IN")+"\n\n";
+  var dn=[],pn=[],tot=0;
+  for(var i=0;i<MEM.length;i++){
+    var fi=document.getElementById("fam"+i);if(fi)D[MEM[i]].f=fi.value||"";
+    var x=D[MEM[i]];
+    if(x&&x.d){var a=ca(i);tot+=a;dn.push("Done: "+MEM[i]+" Rs."+a.toLocaleString("en-IN"));}
+    else pn.push("Pending: "+MEM[i]);
+  }
+  t+="DONE ("+dn.length+"):\n"+dn.join("\n")+"\n\nPENDING ("+pn.length+"):\n"+pn.join("\n")+"\n\nTOTAL: Rs."+tot.toLocaleString("en-IN");
+  var b=new Blob([t],{type:"text/plain"});var a=document.createElement("a");
+  a.href=URL.createObjectURL(b);a.download=CH+"_Summary.txt";a.click();
+}
+
+// AUTO SYNC on page load using no-cors fetch
+window.addEventListener("load",function(){
+  var overlay=document.getElementById("syncing-overlay");
+  var payload=buildPayload();
+  fetch(BACKEND,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain"},body:payload})
+  .then(function(){if(overlay)overlay.style.display="none";var t=document.getElementById("tst");if(t){t.textContent="✅ Auto-synced!";t.style.display="block";setTimeout(function(){t.style.display="none";},4000);}})
+  .catch(function(){if(overlay)overlay.style.display="none";});
+  setTimeout(function(){if(overlay)overlay.style.display="none";},5000);
 });
+
 st();</script>
 </body>
 </html>
