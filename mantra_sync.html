@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BNI Josh 2026 - MANTRA SYNC</title>
+<style>
+body{background:#0D0005;color:#fff;font-family:Arial;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:20px;text-align:center}
+.box{background:#1A0008;border:2px solid #C9A84C;border-radius:12px;padding:30px;max-width:400px;width:100%}
+h1{color:#C9A84C;font-size:20px;margin-bottom:10px}
+.stat{font-size:36px;font-weight:bold;color:#4CAF50;margin:10px 0}
+.sub{font-size:13px;color:rgba(255,255,255,.6);margin-bottom:20px}
+.btn{width:100%;padding:18px;background:#C9A84C;color:#000;font-size:16px;font-weight:bold;border:none;border-radius:8px;cursor:pointer;margin-top:10px}
+.status{margin-top:15px;padding:12px;border-radius:8px;font-size:14px;font-weight:bold}
+.ok{background:rgba(76,175,80,.2);border:1px solid #4CAF50;color:#4CAF50}
+.err{background:rgba(231,76,60,.2);border:1px solid #E74C3C;color:#E74C3C}
+.wait{background:rgba(201,168,76,.1);border:1px solid #C9A84C;color:#C9A84C}
+</style>
+</head><body>
+<div class="box">
+<h1>BNI JOSH 2026 — MANTRA</h1>
+<div class="stat">30</div>
+<div class="sub">Members Registered @ Rs.54,000</div>
+<div id="status" class="status wait">⏳ Ready to sync...</div>
+<button class="btn" onclick="doSync()">🔄 SYNC TO GOOGLE SHEET</button>
+<button class="btn" style="background:#333;color:#C9A84C;margin-top:8px" onclick="doSync()">🔄 TRY AGAIN</button>
+</div>
+<script>
+var BACKEND = "https://script.google.com/macros/s/AKfycbydiIc1WjcgMN0g3f2GS6Z7jQdKDonzOnvclV4OEgVbS7hJuUelFj-RZjzjSc0ikm4/exec";
+var MEM = ["Abhishek Rathore", "Amit . Khare", "Ammbesh A B Patel", "Anam Fatima Pradhan", "Anubhuti Raj", "ATUL ROHRA", "AVIK GHOSH", "BHAVYA SACHDEV", "Girish Dewangan", "Gitika Khatri", "HARISH CHAND CHOUHAN", "Hemant Sinha", "Jatin Khatri", "Laxmikant Sahu", "Manish Kumar Verma", "Murtaza  Rafi", "Mustufa Ahmed", "Naveen Dadsena", "Omprakash Sahu", "Prabhat Tiwari", "Sahil Manek", "Samarth Singh", "SHAHID JAMAL AKHTAR", "Siddhant Shah", "Sonal Gupta", "Sourabh Jain", "Srikant Maheshwari", "Tanuj Gupta", "VARDAN CHHABRA", "Vasu Sahu", "Vikalp Johri", "Vinay Jumnani", "Vishal Agrawal", "Vishal Gupta"];
+var D = {"Abhishek Rathore": {"d": true, "f": "", "k0": 0, "k5": 0, "amt": 1800, "lockedEarly": true}, "Amit . Khare": {"d": true, "f": "", "k0": 0, "k5": 0, "amt": 1800, "lockedEarly": true}, "Ammbesh A B Patel": {"d": true, "f": "", "k0": 0, "k5": 0, "amt": 1800, "lockedEarly": true}, "Anam Fatima Pradhan": {"d": true, "f": "", "k0": 0, "k5": 0, "amt": 1800, "lockedEarly": true}, "Anubhuti Raj": {"d": true, "f": "", "k0": 0, "k5": 0, "amt": 1800, "lockedEarly": true}, "ATUL ROHRA": {"d": true, "f": "", "k0": 0, "k5": 0, "amt": 1800, "lockedEarly": true}, "AVIK GHOSH": {"d": true, "f": "", "k0": 0, "k5": 0, "amt": 1800, "lockedEarly": true}, "BHAVYA SACHDEV": {"d": true, "f": "", "k0": 0, "k5": 0, "amt": 1800, "lockedEarly": true}, "Girish Dewangan": {"d": true, "f": "", "k0": 0, "k5": 0, "amt": 1800, "lockedEarly": true}, "Gitika Khatri": {"d": true, "f": "", "k0": 0, "k5": 0, "amt": 1800, "lockedEarly": true}, "HARISH CHAND CHOUHAN": {"d": true, "f": "", "k0": 0, "k5": 0, "amt": 1800, "lockedEarly": true}, "Hemant Sinha": {"d": false, "f": "", "k0": 0, "k5": 0, "amt": 0, "lockedEarly": false}, "Jatin Khatri": {"d": true, "f": "", "k0": 0, "k5": 0, "amt": 1800, "lockedEarly": true}, "Laxmikant Sahu": {"d": true, "f": "", "k0": 0, "k5": 0, "amt": 1800, "lockedEarly": true}, "Manish Kumar Verma": {"d": true, "f": "", "k0": 0, "k5": 0, "amt": 1800, "lockedEarly": true}, "Murtaza  Rafi": {"d": true, "f": "", "k0": 0, "k5": 0, "amt": 1800, "lockedEarly": true}, "Mustufa Ahmed": {"d": true, "f": "", "k0": 0, "k5": 0, "amt": 1800, "lockedEarly": true}, "Naveen Dadsena": {"d": true, "f": "", "k0": 0, "k5": 0, "amt": 1800, "lockedEarly": true}, "Omprakash Sahu": {"d": false, "f": "", "k0": 0, "k5": 0, "amt": 0, "lockedEarly": false}, "Prabhat Tiwari": {"d": true, "f": "", "k0": 0, "k5": 0, "amt": 1800, "lockedEarly": true}, "Sahil Manek": {"d": true, "f": "", "k0": 0, "k5": 0, "amt": 1800, "lockedEarly": true}, "Samarth Singh": {"d": true, "f": "", "k0": 0, "k5": 0, "amt": 1800, "lockedEarly": true}, "SHAHID JAMAL AKHTAR": {"d": false, "f": "", "k0": 0, "k5": 0, "amt": 0, "lockedEarly": false}, "Siddhant Shah": {"d": true, "f": "", "k0": 0, "k5": 0, "amt": 1800, "lockedEarly": true}, "Sonal Gupta": {"d": true, "f": "", "k0": 0, "k5": 0, "amt": 1800, "lockedEarly": true}, "Sourabh Jain": {"d": true, "f": "", "k0": 0, "k5": 0, "amt": 1800, "lockedEarly": true}, "Srikant Maheshwari": {"d": false, "f": "", "k0": 0, "k5": 0, "amt": 0, "lockedEarly": false}, "Tanuj Gupta": {"d": true, "f": "", "k0": 0, "k5": 0, "amt": 1800, "lockedEarly": true}, "VARDAN CHHABRA": {"d": true, "f": "", "k0": 0, "k5": 0, "amt": 1800, "lockedEarly": true}, "Vasu Sahu": {"d": true, "f": "", "k0": 0, "k5": 0, "amt": 1800, "lockedEarly": true}, "Vikalp Johri": {"d": true, "f": "", "k0": 0, "k5": 0, "amt": 1800, "lockedEarly": true}, "Vinay Jumnani": {"d": true, "f": "", "k0": 0, "k5": 0, "amt": 1800, "lockedEarly": true}, "Vishal Agrawal": {"d": true, "f": "", "k0": 0, "k5": 0, "amt": 1800, "lockedEarly": true}, "Vishal Gupta": {"d": true, "f": "", "k0": 0, "k5": 0, "amt": 1800, "lockedEarly": true}};
+
+function ca(name) {
+  var x = D[name];
+  if (!x || !x.d) return 0;
+  var famAmt = (x.f && x.f.trim()) ? 1800 : 0;
+  var kidAmt = (parseInt(x.k5)||0) * 1800;
+  return (x.amt || 0) + famAmt + kidAmt;
+}
+
+function doSync() {
+  var st = document.getElementById('status');
+  st.className = 'status wait';
+  st.textContent = '⏳ Syncing to sheet...';
+  
+  var mem = [];
+  for (var i = 0; i < MEM.length; i++) {
+    var name = MEM[i];
+    var x = D[name] || {d:false, f:'', k0:0, k5:0, amt:0, lockedEarly:false};
+    mem.push({
+      name: name,
+      done: x.d || false,
+      family: x.f || '',
+      kids0: x.k0 || 0,
+      kids5: x.k5 || 0,
+      amount: ca(name),
+      lockedEarly: x.lockedEarly || false
+    });
+  }
+  
+  var payload = JSON.stringify({chapter: 'MANTRA', members: mem});
+  
+  // Try method 1: XMLHttpRequest with text/plain
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', BACKEND, true);
+  xhr.setRequestHeader('Content-Type', 'text/plain');
+  xhr.timeout = 30000;
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === 4) {
+      if (xhr.status === 200) {
+        st.className = 'status ok';
+        st.textContent = '✅ SYNCED! 30 members updated in Google Sheet!';
+      } else {
+        // Try method 2: fetch with no-cors
+        tryFetch(payload, st);
+      }
+    }
+  };
+  xhr.onerror = function() {
+    tryFetch(payload, st);
+  };
+  xhr.ontimeout = function() {
+    tryFetch(payload, st);
+  };
+  xhr.send(payload);
+}
+
+function tryFetch(payload, st) {
+  st.textContent = '⏳ Trying alternate method...';
+  fetch(BACKEND, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: {'Content-Type': 'text/plain'},
+    body: payload
+  }).then(function() {
+    st.className = 'status ok';
+    st.textContent = '✅ Sync sent! Check your Google Sheet in 30 seconds.';
+  }).catch(function(e) {
+    st.className = 'status err';
+    st.textContent = '❌ Network error: ' + e.message + '. Check internet connection.';
+  });
+}
+
+// Auto-sync on load
+window.onload = function() { doSync(); };
+</script>
+</body></html>
