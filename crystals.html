@@ -1581,6 +1581,40 @@
   </div>
 </div>
 <div class="as"><span class="al">Amount</span><span class="av" id="av45">Rs.0</span></div>
+</div>
+<div class="mc" id="mc46">
+<div class="tr">
+  <span class="sr">47.</span>
+  <span class="mn" id="mn46">Anjani Jhalariya</span>
+  <div class="tw">
+    <button class="tbtn off" id="tb46" onclick="tg(46)"><div class="tdot"></div></button>
+    <span class="tlbl" id="tl46" style="color:#888">Pending</span>
+  </div>
+</div>
+<div id="rateinfo46" style="font-size:9px;margin-bottom:8px;text-align:right"></div>
+<div class="fg">
+  <span class="fl">Family Member Name</span>
+  <input class="fi" type="text" placeholder="Type spouse name" id="fam46" autocomplete="off" oninput="D[MEM[46]].f=this.value;ua(46)">
+</div>
+<div class="kg">
+  <div class="kb">
+    <div class="kl">Kids 0-5<span>FREE</span></div>
+    <div class="kc">
+      <button class="kbtn" id="k0m46" onclick="ck(46,0,-1)">−</button>
+      <span class="knum" id="k0_46">0</span>
+      <button class="kbtn" id="k0p46" onclick="ck(46,0,1)">+</button>
+    </div>
+  </div>
+  <div class="kb">
+    <div class="kl">Kids 5+<span>Rs.1800 each</span></div>
+    <div class="kc">
+      <button class="kbtn" id="k5m46" onclick="ck(46,5,-1)">−</button>
+      <span class="knum" id="k5_46">0</span>
+      <button class="kbtn" id="k5p46" onclick="ck(46,5,1)">+</button>
+    </div>
+  </div>
+</div>
+<div class="as"><span class="al">Amount</span><span class="av" id="av46">Rs.0</span></div>
 </div></div>
 <div class="tst" id="tst">Saved!</div>
 <div class="fb">
@@ -1588,7 +1622,7 @@
   <button class="exbtn" onclick="exp()">Export</button>
 </div>
 <script>
-var CH="CRYSTALS",MEM=["Aditya Agrawal", "AJAY BANSAL", "Ajay Jaiswal", "AMAN AGRAWAL", "Anup Agrawal", "Atul Pahuja", "Atul Ramani", "AVINASH ROCHWANI", "AWDHESH AGRAWAL", "BOMPADA SAIPRIYA", "Chhabi Sahu", "Deepak Sahu", "Devashish M Kedia", "Dhanraj Ramani", "DR.SARFARAZ KHAN", "Gaurav Agrawal", "Hanish Motwani", "JACKY SONI", "Ketann Airon", "Kishan Gupta", "Kunal Motwani", "Mukul Jain", "NEERAJ . SONI", "Pankaj Agrawal", "PIYUSH AGRAWAL", "PIYUSH SINGH", "Prakash Rajpal", "Prashant Tiwari", "Rahul Dewangan", "Rajesh Agrawal", "Rishabh Agrawal", "Rohit Asrani", "SAGAR BATRA", "Sagar Kesharwani", "Santosh Sahu", "Shivani Agrawal", "SHOURYA AGRAWAL", "Shubham Modi", "Sumeet Agrawal", "Sunil Agrawal", "SUNIL RAMANI", "Sunil Vishwkarma", "USHA SHARMA", "Sharvil Sanesar", "Deepesh Agrawal", "Sarfaraj Ali"],BACKEND="https://script.google.com/macros/s/AKfycbydiIc1WjcgMN0g3f2GS6Z7jQdKDonzOnvclV4OEgVbS7hJuUelFj-RZjzjSc0ikm4/exec";
+var CH="CRYSTALS",MEM=["Aditya Agrawal", "AJAY BANSAL", "Ajay Jaiswal", "AMAN AGRAWAL", "Anup Agrawal", "Atul Pahuja", "Atul Ramani", "AVINASH ROCHWANI", "AWDHESH AGRAWAL", "BOMPADA SAIPRIYA", "Chhabi Sahu", "Deepak Sahu", "Devashish M Kedia", "Dhanraj Ramani", "DR.SARFARAZ KHAN", "Gaurav Agrawal", "Hanish Motwani", "JACKY SONI", "Ketann Airon", "Kishan Gupta", "Kunal Motwani", "Mukul Jain", "NEERAJ . SONI", "Pankaj Agrawal", "PIYUSH AGRAWAL", "PIYUSH SINGH", "Prakash Rajpal", "Prashant Tiwari", "Rahul Dewangan", "Rajesh Agrawal", "Rishabh Agrawal", "Rohit Asrani", "SAGAR BATRA", "Sagar Kesharwani", "Santosh Sahu", "Shivani Agrawal", "SHOURYA AGRAWAL", "Shubham Modi", "Sumeet Agrawal", "Sunil Agrawal", "SUNIL RAMANI", "Sunil Vishwkarma", "USHA SHARMA", "Sharvil Sanesar", "Deepesh Agrawal", "Sarfaraj Ali", "Anjani Jhalariya"],BACKEND="https://script.google.com/macros/s/AKfycbydiIc1WjcgMN0g3f2GS6Z7jQdKDonzOnvclV4OEgVbS7hJuUelFj-RZjzjSc0ikm4/exec";
 var LOCK=new Date("2026-07-07T23:59:59");
 var RATE_1800=1800,RATE_2100=2100,FAM_RATE=1800,KID5_RATE=1800;
 var D={};
@@ -1658,7 +1692,7 @@ function applyLockState(){
     var btn=document.getElementById("tb"+i);
     var lbl=document.getElementById("tl"+i);
     var mc=document.getElementById("mc"+i);
-    if(btn&&!D[key].d&&["Sarfaraj Ali"].indexOf(key)<0){
+    if(btn&&!D[key].d&&["Sarfaraj Ali","Anjani Jhalariya"].indexOf(key)<0){
       btn.className="tbtn off locked-off";
       btn.setAttribute("onclick","");
       if(lbl){lbl.textContent="Closed";lbl.style.color="#E74C3C";}
@@ -1715,7 +1749,7 @@ function st(){
 }
 
 function tg(i){
-  if(isClosed()&&!D[MEM[i]].d&&["Sarfaraj Ali"].indexOf(MEM[i])<0)return; // Block new registrations after close
+  if(isClosed()&&!D[MEM[i]].d&&["Sarfaraj Ali","Anjani Jhalariya"].indexOf(MEM[i])<0)return; // Block new registrations after close
   var key=MEM[i];
   D[key].d=!D[key].d;
   var b=document.getElementById("tb"+i),l=document.getElementById("tl"+i),c=document.getElementById("mc"+i),n=document.getElementById("mn"+i);
