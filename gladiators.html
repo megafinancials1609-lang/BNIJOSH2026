@@ -75,7 +75,7 @@ var NEW_MEMBERS=["Amrish  Sharma", "SANTOSH  Kumar Kumhar", "Tushar  Jain"];
 var RATE_EARLY=1800,RATE_2100=2100,FAM_RATE=1800,KID5_RATE=1800;
 var D={};
 for(var i=0;i<MEM.length;i++) D[MEM[i]]={d:false,f:"",k0:0,k5:0,lockedEarly:false,rate:0};
-(function(){var __P=[3, 7, 9, 11, 14, 16, 17, 18, 19, 22, 24, 27, 28, 29, 31, 36, 37, 40, 41, 48, 50, 53, 54, 57, 58, 64, 65, 67, 68, 69, 70, 75, 77, 78, 79, 80, 81, 82, 83, 84, 85, 87, 88, 91, 93, 95, 96, 97, 98],__L=[],__F={};for(var i=0;i<MEM.length;i++){if(D[MEM[i]]){D[MEM[i]].d=true;D[MEM[i]].lockedEarly=true;D[MEM[i]].lockedLate=false;}}for(var a=0;a<__P.length;a++){var k=MEM[__P[a]];if(D[k]){D[k].d=false;D[k].lockedEarly=false;D[k].lockedLate=false;}}for(var a=0;a<__L.length;a++){var k=MEM[__L[a]];if(D[k]){D[k].lockedEarly=false;D[k].lockedLate=true;}}for(var ix in __F){var k=MEM[ix];if(D[k]){D[k].f=__F[ix][0];D[k].k0=__F[ix][1];D[k].k5=__F[ix][2];}}})();
+(function(){var __P=[3, 7, 9, 11, 14, 16, 17, 18, 19, 22, 24, 27, 28, 29, 31, 36, 37, 40, 41, 48, 50, 53, 54, 57, 58, 64, 65, 67, 68, 69, 70, 75, 77, 78, 79, 80, 81, 82, 83, 84, 85, 87, 88, 91, 93, 95, 96, 97, 98],__L=[],__F={"13": ["Rohit banjaree", 0, 0]};for(var i=0;i<MEM.length;i++){if(D[MEM[i]]){D[MEM[i]].d=true;D[MEM[i]].lockedEarly=true;D[MEM[i]].lockedLate=false;}}for(var a=0;a<__P.length;a++){var k=MEM[__P[a]];if(D[k]){D[k].d=false;D[k].lockedEarly=false;D[k].lockedLate=false;}}for(var a=0;a<__L.length;a++){var k=MEM[__L[a]];if(D[k]){D[k].lockedEarly=false;D[k].lockedLate=true;}}for(var ix in __F){var k=MEM[ix];if(D[k]){D[k].f=__F[ix][0];D[k].k0=__F[ix][1];D[k].k5=__F[ix][2];}}})();
 
 
 // Normalize new member names
@@ -170,6 +170,16 @@ function exp(){
   t+="DONE ("+dn.length+"):\n"+dn.join("\n")+"\n\nPENDING/CLOSED ("+pn.length+"):\n"+pn.join("\n")+"\n\nTOTAL: Rs."+tot.toLocaleString("en-IN");
   var b=new Blob([t],{type:"text/plain"});var a=document.createElement("a");a.href=URL.createObjectURL(b);a.download=CH+"_Summary.txt";a.click();
 }
-setInterval(st,1000);st();</script>
+setInterval(st,1000);st();
+/* PERMANENT LOCK — family & kids registration closed */
+(function(){function lockFK(){try{
+ var ins=document.querySelectorAll('input.fi');
+ for(var i=0;i<ins.length;i++){ins[i].readOnly=true;ins[i].setAttribute('oninput','');ins[i].style.opacity='0.6';ins[i].style.cursor='not-allowed';ins[i].title='Family & kids registration closed';}
+ var bs=document.querySelectorAll('button.kbtn');
+ for(var j=0;j<bs.length;j++){bs[j].disabled=true;bs[j].setAttribute('onclick','');bs[j].style.opacity='0.35';bs[j].style.cursor='not-allowed';}
+}catch(e){}}
+lockFK();setTimeout(lockFK,500);if(document.readyState!=='complete'){window.addEventListener('load',lockFK);}
+})();
+</script>
 </body>
 </html>

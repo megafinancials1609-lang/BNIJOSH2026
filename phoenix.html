@@ -2022,7 +2022,7 @@ var LOCK=new Date("2026-07-07T23:59:59");
 var RATE_1800=1800,RATE_2100=2100,FAM_RATE=1800,KID5_RATE=1800;
 var D={};
 for(var i=0;i<MEM.length;i++) D[MEM[i]]={d:false,f:"",k0:0,k5:0,lockedEarly:false,lockedLate:false};
-(function(){var __P=[51],__L=[],__F={"13": ["", 0, 2], "29": ["Mrs Rao", 0, 0]};for(var i=0;i<MEM.length;i++){if(D[MEM[i]]){D[MEM[i]].d=true;D[MEM[i]].lockedEarly=true;D[MEM[i]].lockedLate=false;}}for(var a=0;a<__P.length;a++){var k=MEM[__P[a]];if(D[k]){D[k].d=false;D[k].lockedEarly=false;D[k].lockedLate=false;}}for(var a=0;a<__L.length;a++){var k=MEM[__L[a]];if(D[k]){D[k].lockedEarly=false;D[k].lockedLate=true;}}for(var ix in __F){var k=MEM[ix];if(D[k]){D[k].f=__F[ix][0];D[k].k0=__F[ix][1];D[k].k5=__F[ix][2];}}})();
+(function(){var __P=[51],__L=[],__F={"11": ["Bhavna jhaveri", 0, 0], "13": ["", 0, 2], "17": ["", 0, 2], "29": ["Mrs Rao", 1, 0], "57": ["", 0, 4]};for(var i=0;i<MEM.length;i++){if(D[MEM[i]]){D[MEM[i]].d=true;D[MEM[i]].lockedEarly=true;D[MEM[i]].lockedLate=false;}}for(var a=0;a<__P.length;a++){var k=MEM[__P[a]];if(D[k]){D[k].d=false;D[k].lockedEarly=false;D[k].lockedLate=false;}}for(var a=0;a<__L.length;a++){var k=MEM[__L[a]];if(D[k]){D[k].lockedEarly=false;D[k].lockedLate=true;}}for(var ix in __F){var k=MEM[ix];if(D[k]){D[k].f=__F[ix][0];D[k].k0=__F[ix][1];D[k].k5=__F[ix][2];}}})();
 
 
 // Load saved data
@@ -2130,7 +2130,7 @@ function st(){
   var badge=document.getElementById("ratebadge");
   if(badge){
     if(isClosed()){
-      badge.textContent="🚫 Member Reg CLOSED | Family & Kids still open";
+      badge.textContent="🚫 Member Reg CLOSED | 🔒 Family & Kids CLOSED";
       badge.style.background="rgba(231,76,60,.15)";
       badge.style.color="#E74C3C";
     }else{
@@ -2210,6 +2210,16 @@ function exp(){
 
 setInterval(st,1000);
 st();
+
+/* PERMANENT LOCK — family & kids registration closed */
+(function(){function lockFK(){try{
+ var ins=document.querySelectorAll('input.fi');
+ for(var i=0;i<ins.length;i++){ins[i].readOnly=true;ins[i].setAttribute('oninput','');ins[i].style.opacity='0.6';ins[i].style.cursor='not-allowed';ins[i].title='Family & kids registration closed';}
+ var bs=document.querySelectorAll('button.kbtn');
+ for(var j=0;j<bs.length;j++){bs[j].disabled=true;bs[j].setAttribute('onclick','');bs[j].style.opacity='0.35';bs[j].style.cursor='not-allowed';}
+}catch(e){}}
+lockFK();setTimeout(lockFK,500);if(document.readyState!=='complete'){window.addEventListener('load',lockFK);}
+})();
 </script>
 </body>
 </html>

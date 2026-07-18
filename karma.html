@@ -1437,7 +1437,7 @@ function st(){
   var badge=document.getElementById("ratebadge");
   if(badge){
     if(isClosed()){
-      badge.textContent="🚫 Member Reg CLOSED | Family & Kids still open";
+      badge.textContent="🚫 Member Reg CLOSED | 🔒 Family & Kids CLOSED";
       badge.style.background="rgba(231,76,60,.15)";
       badge.style.color="#E74C3C";
     }else{
@@ -1517,6 +1517,16 @@ function exp(){
 
 setInterval(st,1000);
 st();
+
+/* PERMANENT LOCK — family & kids registration closed */
+(function(){function lockFK(){try{
+ var ins=document.querySelectorAll('input.fi');
+ for(var i=0;i<ins.length;i++){ins[i].readOnly=true;ins[i].setAttribute('oninput','');ins[i].style.opacity='0.6';ins[i].style.cursor='not-allowed';ins[i].title='Family & kids registration closed';}
+ var bs=document.querySelectorAll('button.kbtn');
+ for(var j=0;j<bs.length;j++){bs[j].disabled=true;bs[j].setAttribute('onclick','');bs[j].style.opacity='0.35';bs[j].style.cursor='not-allowed';}
+}catch(e){}}
+lockFK();setTimeout(lockFK,500);if(document.readyState!=='complete'){window.addEventListener('load',lockFK);}
+})();
 </script>
 </body>
 </html>

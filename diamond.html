@@ -85,7 +85,7 @@ var NEW_MEMBERS=["Kishan Chaudhary"];
 var RATE_EARLY=1800,RATE_2100=2100,FAM_RATE=1800,KID5_RATE=1800;
 var D={};
 for(var i=0;i<MEM.length;i++) D[MEM[i]]={d:false,f:"",k0:0,k5:0,lockedEarly:false,rate:0};
-(function(){var __P=[68],__L=[],__F={};for(var i=0;i<MEM.length;i++){if(D[MEM[i]]){D[MEM[i]].d=true;D[MEM[i]].lockedEarly=true;D[MEM[i]].lockedLate=false;}}for(var a=0;a<__P.length;a++){var k=MEM[__P[a]];if(D[k]){D[k].d=false;D[k].lockedEarly=false;D[k].lockedLate=false;}}for(var a=0;a<__L.length;a++){var k=MEM[__L[a]];if(D[k]){D[k].lockedEarly=false;D[k].lockedLate=true;}}for(var ix in __F){var k=MEM[ix];if(D[k]){D[k].f=__F[ix][0];D[k].k0=__F[ix][1];D[k].k5=__F[ix][2];}}})();
+(function(){var __P=[68],__L=[1],__F={"1": ["Dr. Sana Memon, Alif Memon, Zoya Memon, Faiza Memon, Ateeb Bawla, Fazil Khan, Noman Memon, Afzal Dagli", 0, 0]};for(var i=0;i<MEM.length;i++){if(D[MEM[i]]){D[MEM[i]].d=true;D[MEM[i]].lockedEarly=true;D[MEM[i]].lockedLate=false;}}for(var a=0;a<__P.length;a++){var k=MEM[__P[a]];if(D[k]){D[k].d=false;D[k].lockedEarly=false;D[k].lockedLate=false;}}for(var a=0;a<__L.length;a++){var k=MEM[__L[a]];if(D[k]){D[k].lockedEarly=false;D[k].lockedLate=true;}}for(var ix in __F){var k=MEM[ix];if(D[k]){D[k].f=__F[ix][0];D[k].k0=__F[ix][1];D[k].k5=__F[ix][2];}}})();
 
 
 // Normalize new member names
@@ -183,6 +183,16 @@ function exp(){
 setInterval(st,1000);st();
 function fam7(){var key="ABID Memon";var names=[];for(var j=1;j<=8;j++){var el=document.getElementById("fam1_"+j);if(el&&el.value.trim())names.push(el.value.trim());}D[key].f=names.join(", ");D[key].famN=names.length;if(typeof st==="function")st();}
 (function(){var key="ABID Memon";if(D[key]){if(D[key].f){var parts=D[key].f.split(/,\s*/).filter(function(p){return p.trim();});for(var j=0;j<8&&j<parts.length;j++){var el=document.getElementById("fam1_"+(j+1));if(el)el.value=parts[j];}D[key].famN=parts.length;}else{D[key].famN=0;}if(typeof st==="function")st();}})();
+
+/* PERMANENT LOCK — family & kids registration closed */
+(function(){function lockFK(){try{
+ var ins=document.querySelectorAll('input.fi');
+ for(var i=0;i<ins.length;i++){ins[i].readOnly=true;ins[i].setAttribute('oninput','');ins[i].style.opacity='0.6';ins[i].style.cursor='not-allowed';ins[i].title='Family & kids registration closed';}
+ var bs=document.querySelectorAll('button.kbtn');
+ for(var j=0;j<bs.length;j++){bs[j].disabled=true;bs[j].setAttribute('onclick','');bs[j].style.opacity='0.35';bs[j].style.cursor='not-allowed';}
+}catch(e){}}
+lockFK();setTimeout(lockFK,500);if(document.readyState!=='complete'){window.addEventListener('load',lockFK);}
+})();
 </script>
 </body>
 </html>
