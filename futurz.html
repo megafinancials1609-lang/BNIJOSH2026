@@ -59,7 +59,7 @@
 </div>
 <div style="background:rgba(231,76,60,.1);border:1px solid rgba(231,76,60,.3);border-radius:8px;padding:8px 14px;margin:8px 14px;text-align:center">
   <div style="font-size:11px;font-weight:bold;color:#E74C3C">🚫 MEMBER REGISTRATION CLOSED</div>
-  <div style="font-size:9px;color:rgba(255,255,255,.6);margin-top:2px">66 members registered @ Rs.1,800 | Family & Kids still open</div>
+  <div style="font-size:9px;color:rgba(255,255,255,.6);margin-top:2px">66 members registered @ Rs.1,800 | 🔒 Family & Kids CLOSED</div>
 </div>
 <div class="stats">
   <div class="stat"><div class="sn" id="sd">66</div><div class="sl">Done</div></div>
@@ -168,6 +168,16 @@ window.addEventListener("load",function(){
   setTimeout(function(){if(overlay)overlay.style.display="none";},5000);
 });
 
-st();</script>
+st();
+/* PERMANENT LOCK — family & kids registration closed */
+(function(){function lockFK(){try{
+ var ins=document.querySelectorAll('input.fi');
+ for(var i=0;i<ins.length;i++){ins[i].readOnly=true;ins[i].setAttribute('oninput','');ins[i].style.opacity='0.6';ins[i].style.cursor='not-allowed';ins[i].title='Family & kids registration closed';}
+ var bs=document.querySelectorAll('button.kbtn');
+ for(var j=0;j<bs.length;j++){bs[j].disabled=true;bs[j].setAttribute('onclick','');bs[j].style.opacity='0.35';bs[j].style.cursor='not-allowed';}
+}catch(e){}}
+lockFK();setTimeout(lockFK,500);if(document.readyState!=='complete'){window.addEventListener('load',lockFK);}
+})();
+</script>
 </body>
 </html>
