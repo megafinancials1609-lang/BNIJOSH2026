@@ -1395,11 +1395,12 @@ var LOCK=new Date("2026-07-07T23:59:59");
 var RATE_1800=1800,RATE_2100=2100,FAM_RATE=1800,KID5_RATE=1800;
 var D={};
 for(var i=0;i<MEM.length;i++) D[MEM[i]]={d:false,f:"",k0:0,k5:0,lockedEarly:false,lockedLate:false};
+(function(){var __P=[0, 4, 7, 33, 37, 39],__L=[],__F={};for(var i=0;i<MEM.length;i++){if(D[MEM[i]]){D[MEM[i]].d=true;D[MEM[i]].lockedEarly=true;D[MEM[i]].lockedLate=false;}}for(var a=0;a<__P.length;a++){var k=MEM[__P[a]];if(D[k]){D[k].d=false;D[k].lockedEarly=false;D[k].lockedLate=false;}}for(var a=0;a<__L.length;a++){var k=MEM[__L[a]];if(D[k]){D[k].lockedEarly=false;D[k].lockedLate=true;}}for(var ix in __F){var k=MEM[ix];if(D[k]){D[k].f=__F[ix][0];D[k].k0=__F[ix][1];D[k].k5=__F[ix][2];}}})();
+
 
 // Load saved data
-var sv=localStorage.getItem("bj6_name_"+CH)||localStorage.getItem("bj5_"+CH)||localStorage.getItem("bj4_"+CH);
-if(sv){
-  var sd=JSON.parse(sv);
+var sv=localStorage.getItem("bj7_name_"+CH);
+{var sd=sv?JSON.parse(sv):{};
   for(var i=0;i<MEM.length;i++){
     var key=MEM[i];
     if(sd[key])D[key]=sd[key];
@@ -1548,7 +1549,7 @@ function ua(i){st();}
 
 function sav(){
   for(var i=0;i<MEM.length;i++){var fi=document.getElementById("fam"+i);if(fi)D[MEM[i]].f=fi.value||"";}
-  localStorage.setItem("bj6_name_"+CH,JSON.stringify(D));
+  localStorage.setItem("bj7_name_"+CH,JSON.stringify(D));
   var btn=document.querySelector(".sv");btn.textContent="Syncing...";
   var mem=[];
   for(var i=0;i<MEM.length;i++){

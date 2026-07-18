@@ -75,6 +75,8 @@ var NEW_MEMBERS=["Rahul  Sultania"];
 var RATE_EARLY=1800,RATE_2100=2100,FAM_RATE=1800,KID5_RATE=1800;
 var D={};
 for(var i=0;i<MEM.length;i++) D[MEM[i]]={d:false,f:"",k0:0,k5:0,lockedEarly:false,rate:0};
+(function(){var __P=[48],__L=[],__F={};for(var i=0;i<MEM.length;i++){if(D[MEM[i]]){D[MEM[i]].d=true;D[MEM[i]].lockedEarly=true;D[MEM[i]].lockedLate=false;}}for(var a=0;a<__P.length;a++){var k=MEM[__P[a]];if(D[k]){D[k].d=false;D[k].lockedEarly=false;D[k].lockedLate=false;}}for(var a=0;a<__L.length;a++){var k=MEM[__L[a]];if(D[k]){D[k].lockedEarly=false;D[k].lockedLate=true;}}for(var ix in __F){var k=MEM[ix];if(D[k]){D[k].f=__F[ix][0];D[k].k0=__F[ix][1];D[k].k5=__F[ix][2];}}})();
+
 
 // Normalize new member names
 var newSet={};
@@ -82,8 +84,8 @@ NEW_MEMBERS.forEach(function(n){newSet[n.trim().toLowerCase().replace(/  +/g," "
 function isNewMember(name){return newSet[name.trim().toLowerCase().replace(/  +/g," ")]||false;}
 
 // Load saved
-var sv=localStorage.getItem("bj6_name_"+CH)||localStorage.getItem("bj5_"+CH)||localStorage.getItem("bj4_"+CH);
-if(sv){var sd=JSON.parse(sv);for(var i=0;i<MEM.length;i++){var key=MEM[i];if(sd[key])D[key]=sd[key];else if(sd[i])D[key]=sd[i];if(D[key]&&D[key].d){var c=document.getElementById("mc"+i),b=document.getElementById("tb"+i),l=document.getElementById("tl"+i),n=document.getElementById("mn"+i),fi=document.getElementById("fam"+i);if(c)c.className="mc done";if(b){b.className="tbtn on";b.querySelector(".tdot").style.transform="translateX(24px)";}if(l){l.textContent="Done";l.style.color="#4CAF50";}if(n)n.style.color="#A5D6A7";if(fi)fi.value=D[key].f||"";}if(D[key]&&D[key].k0){var e=document.getElementById("k0_"+i);if(e)e.textContent=D[key].k0;}if(D[key]&&D[key].k5){var e=document.getElementById("k5_"+i);if(e)e.textContent=D[key].k5;}}}
+var sv=localStorage.getItem("bj7_name_"+CH);
+{var sd=sv?JSON.parse(sv):{};for(var i=0;i<MEM.length;i++){var key=MEM[i];if(sd[key])D[key]=sd[key];else if(sd[i])D[key]=sd[i];if(D[key]&&D[key].d){var c=document.getElementById("mc"+i),b=document.getElementById("tb"+i),l=document.getElementById("tl"+i),n=document.getElementById("mn"+i),fi=document.getElementById("fam"+i);if(c)c.className="mc done";if(b){b.className="tbtn on";b.querySelector(".tdot").style.transform="translateX(24px)";}if(l){l.textContent="Done";l.style.color="#4CAF50";}if(n)n.style.color="#A5D6A7";if(fi)fi.value=D[key].f||"";}if(D[key]&&D[key].k0){var e=document.getElementById("k0_"+i);if(e)e.textContent=D[key].k0;}if(D[key]&&D[key].k5){var e=document.getElementById("k5_"+i);if(e)e.textContent=D[key].k5;}}}
 
 // Disable toggles for OLD members who haven't paid (reg closed for them)
 for(var i=0;i<MEM.length;i++){
@@ -151,7 +153,7 @@ function ck(i,t,dl){var key=MEM[i],k=t===0?"k0":"k5";D[key][k]=Math.max(0,Math.m
 function ua(i){st();}
 function sav(){
   for(var i=0;i<MEM.length;i++){var fi=document.getElementById("fam"+i);if(fi)D[MEM[i]].f=fi.value||"";}
-  localStorage.setItem("bj6_name_"+CH,JSON.stringify(D));
+  localStorage.setItem("bj7_name_"+CH,JSON.stringify(D));
   var btn=document.querySelector(".sv");btn.textContent="Syncing...";
   var mem=[];
   for(var i=0;i<MEM.length;i++){var x=D[MEM[i]];mem.push({name:MEM[i],done:x.d,family:x.f||"",kids0:x.k0||0,kids5:x.k5||0,amount:ca(i),lockedEarly:x.lockedEarly||false,isNew:isNewMember(MEM[i])});}

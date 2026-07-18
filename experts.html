@@ -1350,6 +1350,24 @@
   </div>
 </div>
 <div class="as"><span class="al">Amount</span><span class="av" id="av38">Rs.0</span></div>
+</div>
+<div class="mc" id="mc39">
+<div class="tr">
+  <span class="sr">40.</span>
+  <span class="mn" id="mn39">Deepak Gupta</span>
+  <div class="tw">
+    <button class="tbtn off" id="tb39" onclick="tg(39)"><div class="tdot"></div></button>
+    <span class="tlbl" id="tl39" style="color:#888">Pending</span>
+  </div>
+</div>
+<div id="rateinfo39" style="font-size:9px;margin-bottom:8px;text-align:right"></div>
+<div class="fg"><span class="fl">Family Member Name</span>
+  <input class="fi" type="text" placeholder="Type spouse name" id="fam39" autocomplete="off" oninput="D[MEM[39]].f=this.value;ua(39)"></div>
+<div class="kg"><div class="kb"><div class="kl">Kids 0-5<span>FREE</span></div><div class="kc">
+  <button class="kbtn" id="k0m39" onclick="ck(39,0,-1)">−</button><span class="knum" id="k0_39">0</span><button class="kbtn" id="k0p39" onclick="ck(39,0,1)">+</button></div></div>
+<div class="kb"><div class="kl">Kids 5+<span>Rs.1800 each</span></div><div class="kc">
+  <button class="kbtn" id="k5m39" onclick="ck(39,5,-1)">−</button><span class="knum" id="k5_39">0</span><button class="kbtn" id="k5p39" onclick="ck(39,5,1)">+</button></div></div></div>
+<div class="as"><span class="al">Amount</span><span class="av" id="av39">Rs.0</span></div>
 </div></div>
 <div class="tst" id="tst">Saved!</div>
 <div class="fb">
@@ -1357,16 +1375,17 @@
   <button class="exbtn" onclick="exp()">Export</button>
 </div>
 <script>
-var CH="EXPERTS",MEM=["AJAY PRAKASH  SHUKLA", "Aman Goyal", "Amit Agrawal", "Anant Srivastav", "Arun DAGA", "Ayush Parakh", "BALMUKUND   CHOUBEY", "BHASKAR DUTTA MANSANA", "Birendra Singh", "Deepak Gupta (Lubricants)", "DEEPESH LALWANI", "DEVRAJ PAL", "Gaurav Sahu", "Manav Jindal", "MANISH. SHARMA", "Manoj Kumar Sahu", "MITHLESH BHUMARKAR", "Nagendra Choudhary", "Nikhil Badhai", "Parth Chauhan", "Prateek Agrawal", "Pratik Agrawal", "Preeti Sahu", "Rahul Agrawal (dry fruits)", "Rahul Thethwar", "Ritesh Nagwani", "Rohit Singh Thakur", "RRahul R Modi", "Shrikant Parakh", "Shubhraj Singh", "Shweta Tiwari", "Shyam lal Sahu", "Sushant Jogdand", "Tapan Agrawal", "Tarun Gohil", "Tribhuvan Sonkar", "VIJAY KUMAR SAHU", "Vijay Malani", "Vivek Yadav"],BACKEND="https://script.google.com/macros/s/AKfycbydiIc1WjcgMN0g3f2GS6Z7jQdKDonzOnvclV4OEgVbS7hJuUelFj-RZjzjSc0ikm4/exec";
+var CH="EXPERTS",MEM=["AJAY PRAKASH  SHUKLA", "Aman Goyal", "Amit Agrawal", "Anant Srivastav", "Arun DAGA", "Ayush Parakh", "BALMUKUND   CHOUBEY", "BHASKAR DUTTA MANSANA", "Birendra Singh", "Deepak Gupta (Lubricants)", "DEEPESH LALWANI", "DEVRAJ PAL", "Gaurav Sahu", "Manav Jindal", "MANISH. SHARMA", "Manoj Kumar Sahu", "MITHLESH BHUMARKAR", "Nagendra Choudhary", "Nikhil Badhai", "Parth Chauhan", "Prateek Agrawal", "Pratik Agrawal", "Preeti Sahu", "Rahul Agrawal (dry fruits)", "Rahul Thethwar", "Ritesh Nagwani", "Rohit Singh Thakur", "RRahul R Modi", "Shrikant Parakh", "Shubhraj Singh", "Shweta Tiwari", "Shyam lal Sahu", "Sushant Jogdand", "Tapan Agrawal", "Tarun Gohil", "Tribhuvan Sonkar", "VIJAY KUMAR SAHU", "Vijay Malani", "Vivek Yadav", "Deepak Gupta"],BACKEND="https://script.google.com/macros/s/AKfycbydiIc1WjcgMN0g3f2GS6Z7jQdKDonzOnvclV4OEgVbS7hJuUelFj-RZjzjSc0ikm4/exec";
 var LOCK=new Date("2026-07-07T23:59:59");
 var RATE_1800=1800,RATE_2100=2100,FAM_RATE=1800,KID5_RATE=1800;
 var D={};
 for(var i=0;i<MEM.length;i++) D[MEM[i]]={d:false,f:"",k0:0,k5:0,lockedEarly:false,lockedLate:false};
+(function(){var __P=[],__L=[],__F={"9": ["Sarika Gupta", 0, 1]};for(var i=0;i<MEM.length;i++){if(D[MEM[i]]){D[MEM[i]].d=true;D[MEM[i]].lockedEarly=true;D[MEM[i]].lockedLate=false;}}for(var a=0;a<__P.length;a++){var k=MEM[__P[a]];if(D[k]){D[k].d=false;D[k].lockedEarly=false;D[k].lockedLate=false;}}for(var a=0;a<__L.length;a++){var k=MEM[__L[a]];if(D[k]){D[k].lockedEarly=false;D[k].lockedLate=true;}}for(var ix in __F){var k=MEM[ix];if(D[k]){D[k].f=__F[ix][0];D[k].k0=__F[ix][1];D[k].k5=__F[ix][2];}}})();
+
 
 // Load saved data
-var sv=localStorage.getItem("bj6_name_"+CH)||localStorage.getItem("bj5_"+CH)||localStorage.getItem("bj4_"+CH);
-if(sv){
-  var sd=JSON.parse(sv);
+var sv=localStorage.getItem("bj7_name_"+CH);
+{var sd=sv?JSON.parse(sv):{};
   for(var i=0;i<MEM.length;i++){
     var key=MEM[i];
     if(sd[key])D[key]=sd[key];
@@ -1515,7 +1534,7 @@ function ua(i){st();}
 
 function sav(){
   for(var i=0;i<MEM.length;i++){var fi=document.getElementById("fam"+i);if(fi)D[MEM[i]].f=fi.value||"";}
-  localStorage.setItem("bj6_name_"+CH,JSON.stringify(D));
+  localStorage.setItem("bj7_name_"+CH,JSON.stringify(D));
   var btn=document.querySelector(".sv");btn.textContent="Syncing...";
   var mem=[];
   for(var i=0;i<MEM.length;i++){
