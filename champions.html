@@ -112,7 +112,8 @@ function updateRateInfo(i){
   if(D[key]&&D[key].d){
     el.innerHTML=getMemberRate(i)===RATE_EARLY?'<span style="color:#4CAF50;font-size:9px;font-weight:bold">🔒 LOCKED — Rs.1,800 (Early Bird)</span>':'<span style="color:#E74C3C;font-size:9px;font-weight:bold">✅ PAID — Rs.2,100</span>';
   }else if(isNewMember(key)){
-    el.innerHTML='<span style="color:#E74C3C;font-size:9px;font-weight:bold">🆕 NEW MEMBER — Rs.2,100</span>';
+    var _r=(["JAI THARANI"].indexOf(key)>=0)?'Rs.1,800':'Rs.2,100';
+    el.innerHTML='<span style="color:#E74C3C;font-size:9px;font-weight:bold">🆕 NEW MEMBER — '+_r+'</span>';
   }else{
     el.innerHTML='<span style="color:rgba(201,168,76,.3);font-size:9px">🚫 Registration Closed</span>';
   }
@@ -133,7 +134,7 @@ function tg(i){
   D[key].d=!D[key].d;
   var b=document.getElementById("tb"+i),l=document.getElementById("tl"+i),c=document.getElementById("mc"+i),n=document.getElementById("mn"+i);
   if(D[key].d){
-    D[key].lockedEarly=false;
+    D[key].lockedEarly=(["JAI THARANI"].indexOf(key)>=0);
     b.className="tbtn on";b.querySelector(".tdot").style.transform="translateX(24px)";
     l.textContent="Done";l.style.color="#4CAF50";
     c.className="mc done";n.style.color="#A5D6A7";
